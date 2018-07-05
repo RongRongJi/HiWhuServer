@@ -11,4 +11,20 @@
         <servlet-name>AddStudentServlet</servlet-name>
         <url-pattern>/AddStudentServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <servlet-class>servlet.AddSponsorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <url-pattern>/AddSponsorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

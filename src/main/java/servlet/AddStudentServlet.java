@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.StudentDaoImpl;
 import database.DBUtill;
 
 /**
@@ -32,11 +33,12 @@ public class AddStudentServlet extends HttpServlet {
      *      response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DBUtill.getConnect();
-
-
-
-
+        //TODO GET DATA
+        String studentID = request.getParameter("studentID"); // 从 request 中获取名为 account 的参数的值
+        String userName=request.getParameter("userName");// 从 request 中获取名为 userName 的参数的值
+        String password = request.getParameter("password"); // 从 request 中获取名为 password 的参数的值
+        StudentDaoImpl stu=new StudentDaoImpl();
+        stu.addStudent(studentID,userName,password);
     }
 
     /**
