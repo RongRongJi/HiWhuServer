@@ -6,10 +6,10 @@ package database;
 import java.sql.*;
 
 public class DBUtill {
-    static  String driver = "com.mysql.jdbc.Driver";
-    static  String url="jdbc:mysql://localhost:3306/hi_whu";
-    static  String user="root";
-    static  String password="root";
+    static private String user="root";
+    static private String password="111222";
+    static private String driver="com.mysql.jdbc.Driver";
+    static private String url="jdbc:mysql://192.168.154.7:3306/Hi_whu";
     public static Connection getConnect() {
         Connection con = null;
         try {
