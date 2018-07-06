@@ -4,6 +4,7 @@ package servlet;
  * Created by lsr on 2018/7/5.
  */
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,11 +35,26 @@ public class AddStudentServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO GET DATA
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
         String studentID = request.getParameter("studentID"); // 从 request 中获取名为 account 的参数的值
-        String userName=request.getParameter("userName");// 从 request 中获取名为 userName 的参数的值
+        String userName=request.getParameter("userName");
+        if(userName!=null){
+            userName = new String(userName.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+        }
         String password = request.getParameter("password"); // 从 request 中获取名为 password 的参数的值
+        System.out.println(request.getRequestURL());
+        System.out.println(studentID);
+        System.out.println(userName);
+        System.out.print(password);
         StudentDaoImpl stu=new StudentDaoImpl();
-        stu.addStudent(studentID,userName,password);
+        int result = stu.addStudent(studentID,userName,password);
+        if(result>0){
+            out.println("succeed");
+        }
+        else{
+            out.println("failed");
+        }
     }
 
     /**

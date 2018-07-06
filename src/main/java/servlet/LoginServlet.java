@@ -39,34 +39,40 @@ public class LoginServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        response.setContentType("text/html");
         PrintWriter pw=response.getWriter();
         Statement statement=null;
         ResultSet rs=null;
         try{
-            /*String account=request.getParameter("account");
-            String password=request.getParameter("password");*/
-            String account = "2016302580251";
-            String password="hiwhu";
+            String account=request.getParameter("account");
+            String password=request.getParameter("password");
+            if(account!=null){
+                account = new String(account.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+            }
+            System.out.println(account);
+            System.out.println(password);
             statement=DBUtill.getConnect().createStatement();
-            String sql1="select * from Student where studentID ='"+account+"' and password ='"+password+"'";
-            String sql2="select * from Sponsor where sponsorName= '"+account+"' and password ='"+password+"'";
+            String sql1="select * from student where studentID ='"+account+"' and password ='"+password+"'";
+            String sql2="select * from sponsor where sponsorName= '"+account+"' and password ='"+password+"'";
+            System.out.println(sql1);
+            System.out.println(sql2);
             rs=statement.executeQuery(sql1);
             if(rs.next()){
                 String studentID=rs.getString("studentID");
                 //TODO 向安卓端传输数据
-                pw.print("登陆成功");
+                pw.print("succeed");
                 System.out.print("登陆成功");
             }else{
                 rs=statement.executeQuery(sql2);
                 if(rs.next()){
                     String sponsorID=rs.getString("sponsorID");
                     //TODO 向安卓端传输数据
-                    pw.print("登陆成功");
+                    pw.print("succeed");
                     System.out.print("登陆成功");
                 }
                 else {
                     //TODO 向安卓端传输数据
-                    pw.print("登陆失败");
+                    pw.print("failed");
                     System.out.print("登陆失败");
                 }
             }
