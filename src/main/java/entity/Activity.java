@@ -9,16 +9,27 @@ import java.util.Date;
 public class Activity {
     private String activityID;
     private String title;
-    private Date startTIme;
-    private Date endTime;
-    private Date registrationStartTime;
-    private Date getRegistrationEndTime;
+    private String startTIme;
+    private String endTime;
+    private String registrationStartTime;
+    private String registrationEndTime;
     private String location;
     private String activityProfile;
     private String sponsorID;
-    private String reviewID;
     private byte[] image;
-
+    public Activity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
+                    String location,String activityProfile,String sponsorID,byte[] image){
+        setActivityID(activityID);
+        setTitle(title);
+        setStartTIme(startTime);
+        setEndTime(endTime);
+        setRegistrationStartTime(registrationStartTime);
+        setRegistrationEndTime(registrationEndTime);
+        setLocation(location);
+        setActivityProfile(activityProfile);
+        setSponsorID(sponsorID);
+        setImage(image);
+    }
     public void setActivityID(String activityID) {
         this.activityID = activityID;
     }
@@ -31,29 +42,29 @@ public class Activity {
     public String getTitle() {
         return title;
     }
-    public void setStartTIme(Date startTIme) {
+    public void setStartTIme(String startTIme) {
         this.startTIme = startTIme;
     }
-    public Date getStartTIme() {
+    public String getStartTIme() {
         return startTIme;
     }
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
-    public void setRegistrationStartTime(Date registrationStartTime) {
+    public void setRegistrationStartTime(String registrationStartTime) {
         this.registrationStartTime = registrationStartTime;
     }
-    public Date getRegistrationStartTime() {
+    public String getRegistrationStartTime() {
         return registrationStartTime;
     }
-    public void setGetRegistrationEndTime(Date getRegistrationEndTime) {
-        this.getRegistrationEndTime = getRegistrationEndTime;
+    public void setRegistrationEndTime(String getRegistrationEndTime) {
+        this.registrationEndTime = getRegistrationEndTime;
     }
-    public Date getGetRegistrationEndTime() {
-        return getRegistrationEndTime;
+    public String getRegistrationEndTime() {
+        return registrationEndTime;
     }
     public void setLocation(String location) {
         this.location = location;
@@ -72,12 +83,6 @@ public class Activity {
     }
     public String getSponsorID() {
         return sponsorID;
-    }
-    public void setReviewID(String reviewID) {
-        this.reviewID = reviewID;
-    }
-    public String getReviewID() {
-        return reviewID;
     }
     public void setImage(byte[] image) {
         this.image = image;

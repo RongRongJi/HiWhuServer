@@ -64,4 +64,20 @@ public class DBUtill {
         }
         return result;
     }
+
+    public static int update(String updateSql){
+        int result=0;
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            result=statement.executeUpdate(updateSql);
+            System.out.println(result);
+            System.out.println("更改成功");
+            statement.close();
+            DBUtill.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("更改失败");
+        }
+        return result;
+    }
 }

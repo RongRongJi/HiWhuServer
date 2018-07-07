@@ -27,4 +27,28 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddActivityServlet</servlet-name>
+        <servlet-class>servlet.AddActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddActivityServlet</servlet-name>
+        <url-pattern>/AddActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteActivityServlet</servlet-name>
+        <servlet-class>servlet.DeleteActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteActivityServlet</servlet-name>
+        <url-pattern>/DeleteActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateActivityServlet</servlet-name>
+        <servlet-class>servlet.UpdateActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateActivityServlet</servlet-name>
+        <url-pattern>/UpdateActivityServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -60,15 +60,15 @@ public class LoginServlet extends HttpServlet {
             if(rs.next()){
                 String studentID=rs.getString("studentID");
                 //TODO 向安卓端传输数据
-                pw.print("succeed");
-                System.out.print("登陆成功");
+                pw.print("1."+studentID);
+                System.out.print("1."+studentID);
             }else{
                 rs=statement.executeQuery(sql2);
                 if(rs.next()){
                     String sponsorID=rs.getString("sponsorID");
                     //TODO 向安卓端传输数据
-                    pw.print("succeed");
-                    System.out.print("登陆成功");
+                    pw.print("2."+sponsorID);
+                    System.out.print("2."+sponsorID);
                 }
                 else {
                     //TODO 向安卓端传输数据
