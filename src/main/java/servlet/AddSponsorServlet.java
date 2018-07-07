@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 /**
@@ -30,13 +31,26 @@ public class AddSponsorServlet  extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO GET DATA
+        PrintWriter out = response.getWriter();
         String sponsorID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         String sponsorName=request.getParameter("sponsorName");
         String phoneNum=request.getParameter("phoneNum");
         String password=request.getParameter("password");
         String introduction=request.getParameter("introduction");
+        if(sponsorName!=null){
+            sponsorName = new String(sponsorName.getBytes("iso-8859-1"),"UTF-8");
+        }
+        if(introduction!=null){
+            introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
+        }
         SponsorDaoImpl sponsorDao=new SponsorDaoImpl();
-        sponsorDao.addSponsor(sponsorID,sponsorName,phoneNum,password,introduction);
+        int result = sponsorDao.addSponsor(sponsorID,sponsorName,phoneNum,password,introduction);
+        if(result>0){
+            out.println("succeed");
+        }
+        else{
+            out.println("failed");
+        }
     }
 
     /**

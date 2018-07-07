@@ -18,7 +18,7 @@ import static database.DBUtill.delete;
 public class SponsorDaoImpl implements SponsorDao {
     public List<Sponsor> show(){
         List<Sponsor> sponsorList=new ArrayList<>();
-        String selectSql="select * from Sponsor";
+        String selectSql="select * from sponsor";
         System.out.println();
         try {
             Statement statement= DBUtill.getConnect().createStatement();
@@ -39,15 +39,13 @@ public class SponsorDaoImpl implements SponsorDao {
         return sponsorList;
     }
     public int deleteSponsor(String sponsorID){
-        String deleteSql="delete Sponsor where sponsorID='"+sponsorID+"'";
+        String deleteSql="delete sponsor where sponsorID='"+sponsorID+"'";
         System.out.println(deleteSql);
-        DBUtill.delete(deleteSql);
-        return 0;
+        return DBUtill.delete(deleteSql);
     }
     public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction){
-        String insertSql="insert into Sponsor(sponsorID,sponsorName,phoneNum,password,introduction) values ('"+sponsorID+"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"');";
+        String insertSql="insert into sponsor(sponsorID,sponsorName,phoneNum,password,introduction) values ('"+sponsorID+"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"');";
         System.out.println(insertSql);
-        DBUtill.insert(insertSql);
-        return 0;
+        return DBUtill.insert(insertSql);
     }
 }
