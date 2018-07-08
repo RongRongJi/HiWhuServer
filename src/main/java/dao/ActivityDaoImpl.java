@@ -61,7 +61,7 @@ public class ActivityDaoImpl implements ActivityDao {
         String updateSql="update activity set title='"+title+"',startTime=str_to_date('"+startTime+"','%Y-%m-%d %H:%i:%s')," +
                 "endTime=str_to_date('"+endTime+"','%Y-%m-%d %H:%i:%s')," +
                 "registrationStartTime=str_to_date('"+registrationStartTime+"','%Y-%m-%d %H:%i:%s')," +
-                "registrationEndTime=str_to_date('"+registrationEndTime+"','%Y-%m-%d %H:%i:%s'),loaction='"
+                "registrationEndTime=str_to_date('"+registrationEndTime+"','%Y-%m-%d %H:%i:%s'),location='"
                 +location+"',activityProfile='"+activityProfile+"',sponsorID='"+sponsorID+"',image="+image+
                 " where activityID='"+activityID+"';";
         System.out.println(updateSql);
