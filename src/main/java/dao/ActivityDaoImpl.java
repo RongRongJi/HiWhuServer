@@ -26,7 +26,7 @@ public class ActivityDaoImpl implements ActivityDao {
                 Activity activity=new Activity(resultSet.getString("activityID"),resultSet.getString("title"),
                         resultSet.getString("startTime"),resultSet.getString("endTime"),resultSet.getString("registrationStartTime"),
                         resultSet.getString("registrationEndTime"),resultSet.getString("location"),resultSet.getString("activityProfile"),
-                        resultSet.getString("sponsorID"),resultSet.getBytes("image"));
+                        resultSet.getString("sponsorID"),resultSet.getBytes("image"),resultSet.getString("type"));
                 // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
                 activityList.add(activity);
             }
@@ -47,22 +47,22 @@ public class ActivityDaoImpl implements ActivityDao {
     }
     //插入活动
     public int addActivity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
-                           String location,String activityProfile,String sponsorID,byte[] image){
+                           String location,String activityProfile,String sponsorID,byte[] image,String type){
         String insertSql="insert into activity values ('"+activityID+"','"+title+"',str_to_date('"+startTime+"','%Y-%m-%d %H:%i:%s')," +
                 "str_to_date('"+endTime+"','%Y-%m-%d %H:%i:%s'),str_to_date('"+registrationStartTime +"','%Y-%m-%d %H:%i:%s')," +
                 "str_to_date('"+registrationEndTime+"','%Y-%m-%d %H:%i:%s'),'"+location+"','"+activityProfile+"','"
-                +sponsorID+"',"+image+");";
+                +sponsorID+"',"+image+",'"+type+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
     }
     //更新活动信息
     public int updateActivity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
-                                         String location,String activityProfile,String sponsorID,byte[] image){
+                                         String location,String activityProfile,String sponsorID,byte[] image,String type){
         String updateSql="update activity set title='"+title+"',startTime=str_to_date('"+startTime+"','%Y-%m-%d %H:%i:%s')," +
                 "endTime=str_to_date('"+endTime+"','%Y-%m-%d %H:%i:%s')," +
                 "registrationStartTime=str_to_date('"+registrationStartTime+"','%Y-%m-%d %H:%i:%s')," +
                 "registrationEndTime=str_to_date('"+registrationEndTime+"','%Y-%m-%d %H:%i:%s'),location='"
-                +location+"',activityProfile='"+activityProfile+"',sponsorID='"+sponsorID+"',image="+image+
+                +location+"',activityProfile='"+activityProfile+"',sponsorID='"+sponsorID+"',image="+image+",type='"+type+"'"+
                 " where activityID='"+activityID+"';";
         System.out.println(updateSql);
         return DBUtill.update(updateSql);
@@ -71,4 +71,6 @@ public class ActivityDaoImpl implements ActivityDao {
     public List<Activity> selectActivity(String string){
         return null;
     }
+
+
 }

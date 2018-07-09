@@ -21,12 +21,12 @@
     <dependencies>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <!--<dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.45</version>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
 
         <!-- servlet依赖. -->
         <dependency>
@@ -35,5 +35,13 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
     </dependencies>
 </project>

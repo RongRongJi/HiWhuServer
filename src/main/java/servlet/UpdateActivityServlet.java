@@ -59,6 +59,8 @@ public class UpdateActivityServlet extends HttpServlet {
             activityProfile = new String(activityProfile.getBytes("iso-8859-1"),"UTF-8");
         }
         String sponsorID=request.getParameter("sponsorID");
+        //String type=request.getParameter("type");
+        String type="推荐";
         /*String activityID="4423e97087724d0c9f3207863bb0584b";
         String title="aa";
         String startTime="2018-12-12 13:55"+":00";
@@ -71,7 +73,7 @@ public class UpdateActivityServlet extends HttpServlet {
         byte[] image=null;
         ActivityDaoImpl activityDao=new ActivityDaoImpl();
         int result = activityDao.updateActivity(activityID,title,startTime,endTime,registrationStartTime,registrationEndTime,location,activityProfile,
-                sponsorID,image);
+                sponsorID,image,type);
         if(result>0){
             out.print("updatesucceed");
         }else{

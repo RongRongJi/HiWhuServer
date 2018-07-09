@@ -17,8 +17,9 @@ public class Activity {
     private String activityProfile;
     private String sponsorID;
     private byte[] image;
+    private String type;
     public Activity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
-                    String location,String activityProfile,String sponsorID,byte[] image){
+                    String location,String activityProfile,String sponsorID,byte[] image,String type){
         setActivityID(activityID);
         setTitle(title);
         setStartTIme(startTime);
@@ -29,6 +30,7 @@ public class Activity {
         setActivityProfile(activityProfile);
         setSponsorID(sponsorID);
         setImage(image);
+        setType(type);
     }
     public void setActivityID(String activityID) {
         this.activityID = activityID;
@@ -90,4 +92,6 @@ public class Activity {
     public byte[] getImage() {
         return image;
     }
+    public void setType(String type){this.type = type;}
+    public String getType(){return type;}
 }

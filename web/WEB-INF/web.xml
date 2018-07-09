@@ -51,4 +51,12 @@
         <servlet-name>UpdateActivityServlet</servlet-name>
         <url-pattern>/UpdateActivityServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetAllActivityServlet</servlet-name>
+        <servlet-class>servlet.GetAllActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllActivityServlet</servlet-name>
+        <url-pattern>/GetAllActivityServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

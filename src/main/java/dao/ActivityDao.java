@@ -16,10 +16,10 @@ public interface ActivityDao {
     public int deleteActivity(String activityID);
     //插入活动
     public int addActivity(String activityID, String title, String startTime, String endTime, String registrationStartTime, String registrationEndTime,
-                           String location, String activityProfile, String sponsorID, byte[] image);
+                           String location, String activityProfile, String sponsorID, byte[] image, String type);
     //更新活动信息
     public int updateActivity(String activityID, String title, String startTime, String endTime, String registrationStartTime, String registrationEndTime,
-                              String location, String activityProfile, String sponsorID, byte[] image);
+                              String location, String activityProfile, String sponsorID, byte[] image, String type);
     //通过关键字查找活动
     public List<Activity> selectActivity(String string);
 }

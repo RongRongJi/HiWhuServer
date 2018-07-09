@@ -60,6 +60,8 @@ public class AddActivityServlet extends HttpServlet {
             activityProfile = new String(activityProfile.getBytes("iso-8859-1"),"UTF-8");
         }
         String sponsorID=request.getParameter("sponsorID");
+        //String type=request.getParameter("type");
+        String type="推荐";
         /*String title="aa";
         String startTime="2018-12-12 13:54"+":00";
         String endTime="2018-12-12 13:54"+":00";
@@ -71,7 +73,7 @@ public class AddActivityServlet extends HttpServlet {
         byte[] image=null;
         ActivityDaoImpl activityDao=new ActivityDaoImpl();
         int result = activityDao.addActivity(activityID,title,startTime,endTime,registrationStartTime,registrationEndTime,location,activityProfile,
-                sponsorID,image);
+                sponsorID,image,type);
         if(result>0){
             out.print("succeed."+activityID);
         }else{
