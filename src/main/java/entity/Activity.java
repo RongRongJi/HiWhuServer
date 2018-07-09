@@ -92,6 +92,12 @@ public class Activity {
     public byte[] getImage() {
         return image;
     }
-    public void setType(String type){this.type = type;}
-    public String getType(){return type;}
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

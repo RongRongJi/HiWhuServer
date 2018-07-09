@@ -59,4 +59,44 @@
         <servlet-name>GetAllActivityServlet</servlet-name>
         <url-pattern>/GetAllActivityServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>StuApplyActivityServlet</servlet-name>
+        <servlet-class>servlet.StuApplyActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StuApplyActivityServlet</servlet-name>
+        <url-pattern>/StuApplyActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StuCollectActivityServlet</servlet-name>
+        <servlet-class>servlet.StuCollectActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StuCollectActivityServlet</servlet-name>
+        <url-pattern>/StuCollectActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PassApplyServlet</servlet-name>
+        <servlet-class>servlet.PassApplyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PassApplyServlet</servlet-name>
+        <url-pattern>/PassApplyServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RejectApplyServlet</servlet-name>
+        <servlet-class>servlet.RejectApplyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RejectApplyServlet</servlet-name>
+        <url-pattern>/RejectApplyServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SearchActivity</servlet-name>
+        <servlet-class>servlet.SearchActivity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchActivity</servlet-name>
+        <url-pattern>/SearchActivity</url-pattern>
+    </servlet-mapping>
 </web-app>
