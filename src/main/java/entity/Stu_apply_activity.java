@@ -9,9 +9,14 @@ import java.util.Date;
 public class Stu_apply_activity {
     private String studentID;
     private String activityID;
-    private Date time;
+    private String time;
     private String state;
-
+    public Stu_apply_activity(String studentID,String activityID,String time,String state){
+        setStudentID(studentID);
+        setActivityID(activityID);
+        setTime(time);
+        setState(state);
+    }
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
@@ -24,10 +29,10 @@ public class Stu_apply_activity {
     public String getActivityID() {
         return activityID;
     }
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
     public void setState(String state) {

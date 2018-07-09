@@ -4,6 +4,10 @@ package database;
  * Created by lsr on 2018/7/5.
  */
 import java.sql.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class DBUtill {
     static private String user="root";
@@ -79,5 +83,31 @@ public class DBUtill {
             System.out.println("更改失败");
         }
         return result;
+    }
+
+    public static boolean compare(String time1,String time2){
+        //如果想比较日期则写成"yyyy-MM-dd"就可以了
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        //将字符串形式的时间转化为Date类型的时间
+        java.util.Date a= null;
+        java.util.Date b= null;
+        try {
+            a = sdf.parse(time1);
+            b=sdf.parse(time2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //Date类的一个方法，如果a早于b返回true，否则返回false
+        if(a.before(b))
+            return true;
+        else
+            return false;
+		/*
+		 * 如果你不喜欢用上面这个太流氓的方法，也可以根据将Date转换成毫秒
+		if(a.getTime()-b.getTime()<0)
+			return true;
+		else
+			return false;
+		*/
     }
 }

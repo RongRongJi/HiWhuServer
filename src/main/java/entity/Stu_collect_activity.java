@@ -7,7 +7,10 @@ package entity;
 public class Stu_collect_activity {
     private String studentID;
     private String activityID;
-
+    public Stu_collect_activity(String studentID,String activityID){
+        setStudentID(studentID);
+        setActivityID(activityID);
+    }
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
