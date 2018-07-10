@@ -71,7 +71,7 @@ public class UpdateActivityServlet extends HttpServlet {
         String location="aa";
         String activityProfile="aa";
         String sponsorID="22222222222222222222222222222222";*/
-        byte[] image=null;
+        String image=null;
         ActivityDao activityDao=new ActivityDaoImpl();
         int result = activityDao.updateActivity(activityID,title,startTime,endTime,registrationStartTime,registrationEndTime,location,activityProfile,
                 sponsorID,image,type);

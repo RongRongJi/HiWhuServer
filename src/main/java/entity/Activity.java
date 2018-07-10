@@ -16,11 +16,11 @@ public class Activity {
     private String location;
     private String activityProfile;
     private String sponsorID;
-    private byte[] image;
+    private String image;
     //1代表“竞赛”,2代表“体育”，3代表“”，4代表“”，5代表“”，6代表“”
     private String type;
     public Activity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
-                    String location,String activityProfile,String sponsorID,byte[] image,String type){
+                    String location,String activityProfile,String sponsorID,String image,String type){
         setActivityID(activityID);
         setTitle(title);
         setStartTIme(startTime);
@@ -87,10 +87,10 @@ public class Activity {
     public String getSponsorID() {
         return sponsorID;
     }
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
