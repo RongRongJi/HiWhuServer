@@ -1,5 +1,6 @@
 package servlet;
 
+import dao.ActivityDao;
 import dao.ActivityDaoImpl;
 
 import javax.servlet.ServletException;
@@ -34,7 +35,7 @@ public class DeleteActivityServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String activityID=request.getParameter("activityID");
         /*String activityID="4423e97087724d0c9f3207863bb0584b";*/
-        ActivityDaoImpl activityDao=new ActivityDaoImpl();
+        ActivityDao activityDao=new ActivityDaoImpl();
         int result = activityDao.deleteActivity(activityID);
         if(result>0){
             out.print("succeed");

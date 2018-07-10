@@ -9,4 +9,5 @@ public interface StudentDao{
     public List<Student> show();
     public int deleteStudent(String studentID);
     public int addStudent(String studentID,String username,String password);
+    public List<Student> selectStudent(String studentID);
 }

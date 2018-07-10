@@ -3,6 +3,7 @@ package dao;
 import database.DBUtill;
 import entity.Activity;
 import entity.Stu_apply_activity;
+import entity.Student;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,27 +26,27 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
 
     }
     //学生查看自己未审核的活动
-    public List<Stu_apply_activity> getActivityByStudentID(String studentID){
-        List<Stu_apply_activity> applyList=new ArrayList<>();
+    public List<Activity> getActivityByStudentID(String studentID){
+        List<Activity> activityList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where studentID='"+studentID+"' and state='1';";
-        select(applyList,selectSql);
-        return applyList;
+        selectActivity(activityList,selectSql);
+        return activityList;
     }
 
     //学生查看自己已经审核通过的活动（待参加）
-    public List<Stu_apply_activity> getActivityByStudentIDAndState2(String studentID){
-        List<Stu_apply_activity> applyList=new ArrayList<>();
+    public List<Activity> getActivityByStudentIDAndState2(String studentID){
+        List<Activity> activityList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where studentID='"+studentID+"' and state='2';";
-        select(applyList,selectSql);
-        return applyList;
+        selectActivity(activityList,selectSql);
+        return activityList;
     }
 
     //找到某一个活动中没有审核的报名的人（活动主办方查看未审核人员名单）
-    public List<Stu_apply_activity> getActivityByActivityID(String activityID){
-        List<Stu_apply_activity> applyList=new ArrayList<>();
+    public List<Student> getActivityByActivityID(String activityID){
+        List<Student> studentList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where activityID='"+activityID+"' and state='1';";
-        select(applyList,selectSql);
-        return applyList;
+        selectStudent(studentList,selectSql);
+        return studentList;
     }
 
     //找到已经报名的活动，防止重复报名
@@ -77,6 +78,43 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
         return DBUtill.update(updateSql);
     }
 
+    public void selectActivity(List<Activity> activityList,String selectSql){
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                String activityID= resultSet.getString("activityID");
+                ActivityDao activityDao=new ActivityDaoImpl();
+                Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+                activityList.add(activity);
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+    }
+
+    public void selectStudent(List<Student> studentList,String selectSql){
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                String studentID= resultSet.getString("studentID");
+                StudentDao studentDao=new StudentDaoImpl();
+                Student student=studentDao.selectStudent(studentID).get(0);
+                studentList.add(student);
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+    }
     public void select(List<Stu_apply_activity> applyList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();

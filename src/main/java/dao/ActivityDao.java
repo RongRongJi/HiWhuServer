@@ -22,4 +22,6 @@ public interface ActivityDao {
                               String location, String activityProfile, String sponsorID, byte[] image,String type);
     //通过关键字查找活动
     public List<Activity> selectActivity(String string);
+    public List<Activity> getActivityByActivityID(String activityID);
+    public List<Activity> getActivityByType(String type);
 }

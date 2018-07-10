@@ -15,22 +15,7 @@ public class StudentDaoImpl implements StudentDao {
         List<Student> studentList=new ArrayList<> ();
         String selectSql="select * from Student";
         System.out.println();
-        try {
-            Statement statement= DBUtill.getConnect().createStatement();
-            ResultSet resultSet=statement.executeQuery(selectSql);
-            while (resultSet.next()) {
-                Student stu=new Student(resultSet.getString("studentID"),resultSet.getString("userName"),resultSet.getString("password"));
-                // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
-                System.out.println(stu.toString());
-                studentList.add(stu);
-            }
-            System.out.println("查询成功");
-            statement.close();
-            DBUtill.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("查询失败");
-        }
+        select(studentList,selectSql);
         return studentList;
     }
     public int deleteStudent(String studentID){
@@ -42,5 +27,31 @@ public class StudentDaoImpl implements StudentDao {
         String insertSql="insert into student(studentId,userName,password) values ('"+studentID+"','"+username+"','"+password+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
+    }
+    public List<Student> selectStudent(String studentID){
+        List<Student> studentList=new ArrayList<> ();
+        String selectSql="select * from student where studentID='"+studentID+"';";
+        System.out.println();
+        select(studentList,selectSql);
+        return studentList;
+    }
+
+    public void select(List<Student> studentList,String selectSql) {
+        try {
+        Statement statement= DBUtill.getConnect().createStatement();
+        ResultSet resultSet=statement.executeQuery(selectSql);
+        while (resultSet.next()) {
+        Student stu=new Student(resultSet.getString("studentID"),resultSet.getString("userName"),resultSet.getString("password"));
+        // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
+        System.out.println(stu.toString());
+        studentList.add(stu);
+        }
+        System.out.println("查询成功");
+        statement.close();
+        DBUtill.close();
+        }catch (SQLException e){
+        e.printStackTrace();
+        System.out.println("查询失败");
+        }
     }
 }

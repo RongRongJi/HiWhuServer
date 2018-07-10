@@ -1,5 +1,6 @@
 package servlet;
 
+import dao.Stu_apply_activityDao;
 import dao.Stu_apply_activityDaoImpl;
 import dao.Stu_collect_activityDaoImpl;
 import entity.Stu_collect_activity;
@@ -36,12 +37,12 @@ public class RejectApplyServlet extends HttpServlet {
 //        String activityID=request.getParameter("activityID");
         String studentID="2016302580228";
         String activityID="8342fc4d55f34d19956a8c230b628e4d";
-        Stu_apply_activityDaoImpl stu_apply_activityDao=new Stu_apply_activityDaoImpl();
+        Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
         int result=stu_apply_activityDao.rejectApply(studentID,activityID);
         if(result>0){
-            out.print("succeed");
+            out.print("reject");
         }else{
-            out.print("failed");
+            out.print("failedReject");
         }
     }
 

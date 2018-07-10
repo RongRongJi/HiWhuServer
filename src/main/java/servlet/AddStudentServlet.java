@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.StudentDao;
 import dao.StudentDaoImpl;
 import database.DBUtill;
 
@@ -47,7 +48,7 @@ public class AddStudentServlet extends HttpServlet {
         System.out.println(studentID);
         System.out.println(userName);
         System.out.print(password);
-        StudentDaoImpl stu=new StudentDaoImpl();
+        StudentDao stu=new StudentDaoImpl();
         int result = stu.addStudent(studentID,userName,password);
         if(result>0){
             out.println("succeed");

@@ -1,5 +1,6 @@
 package servlet;
 
+import dao.SponsorDao;
 import dao.SponsorDaoImpl;
 import dao.StudentDaoImpl;
 
@@ -43,7 +44,7 @@ public class AddSponsorServlet  extends HttpServlet {
         if(introduction!=null){
             introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
         }
-        SponsorDaoImpl sponsorDao=new SponsorDaoImpl();
+        SponsorDao sponsorDao=new SponsorDaoImpl();
         int result = sponsorDao.addSponsor(sponsorID,sponsorName,phoneNum,password,introduction);
         if(result>0){
             out.println("succeed");

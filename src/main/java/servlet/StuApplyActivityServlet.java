@@ -1,8 +1,10 @@
 package servlet;
 
 import dao.ActivityDaoImpl;
+import dao.Stu_apply_activityDao;
 import dao.Stu_apply_activityDaoImpl;
 import database.DBUtill;
+import entity.Stu_apply_activity;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lenovo on 2018/7/9.
@@ -33,6 +37,8 @@ public class StuApplyActivityServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         //TODO GET DATA
 //        String studentID=request.getParameter("studentID");
 //        String activityID=request.getParameter("activityID");
@@ -44,12 +50,18 @@ public class StuApplyActivityServlet extends HttpServlet {
         // TODO 得到报名信息数据
         String registrationEndTime=new ActivityDaoImpl().selectActivity(activityID).get(0).getRegistrationEndTime();
         if(DBUtill.compare(time,registrationEndTime)){
-            Stu_apply_activityDaoImpl stu_apply_activityDao=new Stu_apply_activityDaoImpl();
-            int result = stu_apply_activityDao.addApply(studentID,activityID,time,state);
-            if(result>0){
-                out.print("succeed");
-            }else{
-                out.print("failed");
+            Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
+            List<Stu_apply_activity> applyList=stu_apply_activityDao.getActivityByStudentIDAndActivityID(studentID,activityID);
+            if(applyList.size()!=0){
+                out.print("applied");
+            }
+            else {
+                int result = stu_apply_activityDao.addApply(studentID,activityID,time,state);
+                if(result>0){
+                    out.print("succeed");
+                }else{
+                    out.print("failed");
+                }
             }
         }
         else{

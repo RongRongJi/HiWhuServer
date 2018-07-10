@@ -1,5 +1,6 @@
 package servlet;
 
+import dao.ActivityDao;
 import dao.ActivityDaoImpl;
 import dao.Stu_apply_activityDaoImpl;
 import entity.Activity;
@@ -38,7 +39,7 @@ public class SearchActivity extends HttpServlet {
 //        String keyStr=request.getParameter("keyStr");
         String keyStr="国软";
         try{
-            ActivityDaoImpl activityDao=new ActivityDaoImpl();
+            ActivityDao activityDao=new ActivityDaoImpl();
             List<Activity> activityList=activityDao.selectActivity(keyStr);
             JSONArray array = JSONArray.fromObject(activityList);
             String strArray = array.toString();

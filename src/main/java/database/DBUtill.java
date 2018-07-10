@@ -4,10 +4,8 @@ package database;
  * Created by lsr on 2018/7/5.
  */
 import java.sql.*;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 
 public class DBUtill {
     static private String user="root";

@@ -58,7 +58,20 @@ public class ActivityDaoImpl implements ActivityDao {
         select(activityList,selectSql);
         return activityList;
     }
-
+    //通过类型关键字查找活动
+    public List<Activity> getActivityByType(String type){
+        List<Activity> activityList=new ArrayList<>();
+        String selectSql="select * from activity where type='"+type+"';";
+        select(activityList,selectSql);
+        return activityList;
+    }
+    //通过类型关键字查找活动
+    public List<Activity> getActivityByActivityID(String activityID){
+        List<Activity> activityList=new ArrayList<>();
+        String selectSql="select * from activity where activityID='"+activityID+"';";
+        select(activityList,selectSql);
+        return activityList;
+    }
     public void select(List<Activity> activityList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();

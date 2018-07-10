@@ -99,4 +99,20 @@
         <servlet-name>SearchActivity</servlet-name>
         <url-pattern>/SearchActivity</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetActivityByTypeServlet</servlet-name>
+        <servlet-class>servlet.GetActivityByTypeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetActivityByTypeServlet</servlet-name>
+        <url-pattern>/GetActivityByTypeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetAppliedActivityByStudentIDServlet</servlet-name>
+        <servlet-class>servlet.GetAppliedActivityByStudentIDServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAppliedActivityByStudentIDServlet</servlet-name>
+        <url-pattern>/GetAppliedActivityByStudentIDServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

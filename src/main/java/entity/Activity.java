@@ -17,6 +17,7 @@ public class Activity {
     private String activityProfile;
     private String sponsorID;
     private byte[] image;
+    //1代表“竞赛”,2代表“体育”，3代表“”，4代表“”，5代表“”，6代表“”
     private String type;
     public Activity(String activityID,String title,String startTime,String endTime,String registrationStartTime,String registrationEndTime,
                     String location,String activityProfile,String sponsorID,byte[] image,String type){

@@ -2,6 +2,7 @@ package servlet;
 
 import dao.ActivityDaoImpl;
 import dao.Stu_apply_activityDaoImpl;
+import dao.Stu_collect_activityDao;
 import dao.Stu_collect_activityDaoImpl;
 import database.DBUtill;
 import entity.Stu_collect_activity;
@@ -43,7 +44,7 @@ public class StuCollectActivityServlet extends HttpServlet {
         String activityID="8342fc4d55f34d19956a8c230b628e4d";
         System.out.println(studentID);
         System.out.println(activityID);
-        Stu_collect_activityDaoImpl stu_collect_activityDao=new Stu_collect_activityDaoImpl();
+        Stu_collect_activityDao stu_collect_activityDao=new Stu_collect_activityDaoImpl();
         List<Stu_collect_activity> collectList=stu_collect_activityDao.getActivityByStudentIDAndActivityID(studentID,activityID);
         int result=0;
         if(collectList.size()!=0){
