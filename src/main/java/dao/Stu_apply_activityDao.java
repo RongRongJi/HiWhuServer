@@ -12,8 +12,9 @@ import java.util.List;
 public interface Stu_apply_activityDao {
     public int addApply(String studentID,String activityID,String time,String state);
     public List<Activity> getActivityByStudentID(String studentID);
-    public List<Student> getActivityByActivityID(String activityID);
+    public List<Student> getStudentByActivityID(String activityID);
     public List<Activity> getActivityByStudentIDAndState2(String studentID);
+    public List<Activity> getActivityByStudentIDAndJoined(String studentID);
     public int deleteApply(String studentID,String activityID);
     public List<Stu_apply_activity> getActivityByStudentIDAndActivityID(String studentID,String activityID);
     public int passApply(String studentID,String activityID);

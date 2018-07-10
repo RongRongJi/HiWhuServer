@@ -108,6 +108,22 @@
         <url-pattern>/GetActivityByTypeServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>GetMessageServlet</servlet-name>
+        <servlet-class>servlet.GetMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMessageServlet</servlet-name>
+        <url-pattern>/GetMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetAppliedStudentByActivityIDServlet</servlet-name>
+        <servlet-class>servlet.GetAppliedStudentByActivityIDServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAppliedStudentByActivityIDServlet</servlet-name>
+        <url-pattern>/GetAppliedStudentByActivityIDServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>GetAppliedActivityByStudentIDServlet</servlet-name>
         <servlet-class>servlet.GetAppliedActivityByStudentIDServlet</servlet-class>
     </servlet>
@@ -115,4 +131,45 @@
         <servlet-name>GetAppliedActivityByStudentIDServlet</servlet-name>
         <url-pattern>/GetAppliedActivityByStudentIDServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetJoinedActivityServlet</servlet-name>
+        <servlet-class>servlet.GetJoinedActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetJoinedActivityServlet</servlet-name>
+        <url-pattern>/GetJoinedActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetPassedActivityServlet</servlet-name>
+        <servlet-class>servlet.GetPassedActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPassedActivityServlet</servlet-name>
+        <url-pattern>/GetPassedActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <servlet-class>servlet.AddCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <url-pattern>/AddCommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ReplyCommentServlet</servlet-name>
+        <servlet-class>servlet.ReplyCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReplyCommentServlet</servlet-name>
+        <url-pattern>/ReplyCommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetActivityBySponsorIDServlet</servlet-name>
+        <servlet-class>servlet.GetActivityBySponsorIDServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetActivityBySponsorIDServlet</servlet-name>
+        <url-pattern>/GetActivityBySponsorIDServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

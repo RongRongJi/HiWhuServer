@@ -11,8 +11,14 @@ public class Message {
     private String content;
     private String studentID;
     private String activityID;
-    private Date time;
-
+    private String time;
+    public Message(String messageID,String content,String studentID,String activityID,String time){
+        setStudentID(studentID);
+        setContent(content);
+        setStudentID(studentID);
+        setActivityID(activityID);
+        setTime(time);
+    }
     public void setMessageID(String messageID) {
         this.messageID = messageID;
     }
@@ -37,10 +43,10 @@ public class Message {
     public String getActivityID() {
         return activityID;
     }
-    public void setTime(Date time){
+    public void setTime(String time){
         this.time=time;
     }
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 }

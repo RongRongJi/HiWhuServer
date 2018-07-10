@@ -24,4 +24,5 @@ public interface ActivityDao {
     public List<Activity> selectActivity(String string);
     public List<Activity> getActivityByActivityID(String activityID);
     public List<Activity> getActivityByType(String type);
+    public List<Activity> getActivityBySponsorID(String sponsorID);
 }

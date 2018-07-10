@@ -32,17 +32,22 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
         selectActivity(activityList,selectSql);
         return activityList;
     }
-
     //学生查看自己已经审核通过的活动（待参加）
     public List<Activity> getActivityByStudentIDAndState2(String studentID){
         List<Activity> activityList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where studentID='"+studentID+"' and state='2';";
-        selectActivity(activityList,selectSql);
+        selectActivity1(activityList,selectSql);
         return activityList;
     }
-
+    //已参加
+    public List<Activity> getActivityByStudentIDAndJoined(String studentID){
+        List<Activity> activityList=new ArrayList<>();
+        String selectSql="select * from stu_apply_activity where studentID='"+studentID+"' and state='2';";
+        selectActivity2(activityList,selectSql);
+        return activityList;
+    }
     //找到某一个活动中没有审核的报名的人（活动主办方查看未审核人员名单）
-    public List<Student> getActivityByActivityID(String activityID){
+    public List<Student> getStudentByActivityID(String activityID){
         List<Student> studentList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where activityID='"+activityID+"' and state='1';";
         selectStudent(studentList,selectSql);
@@ -77,7 +82,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
         System.out.println(updateSql);
         return DBUtill.update(updateSql);
     }
-
+    //待审核
     public void selectActivity(List<Activity> activityList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();
@@ -96,7 +101,52 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
             System.out.println("查询失败");
         }
     }
-
+    //待参加，在活动结束时间之前
+    public void selectActivity1(List<Activity> activityList,String selectSql){
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                String activityID= resultSet.getString("activityID");
+                ActivityDao activityDao=new ActivityDaoImpl();
+                Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                String time=df.format(new Date());// new Date()为获取当前系统时间
+                if(DBUtill.compare(time,activity.getEndTime())){
+                    activityList.add(activity);
+                }
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+    }
+    //已参加，在活动结束时间之后
+    public void selectActivity2(List<Activity> activityList,String selectSql){
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                String activityID= resultSet.getString("activityID");
+                ActivityDao activityDao=new ActivityDaoImpl();
+                Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                String time=df.format(new Date());// new Date()为获取当前系统时间
+                if(!DBUtill.compare(time,activity.getEndTime())){
+                    activityList.add(activity);
+                }
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+    }
     public void selectStudent(List<Student> studentList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();

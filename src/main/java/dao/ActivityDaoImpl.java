@@ -7,6 +7,7 @@ import entity.Sponsor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +73,12 @@ public class ActivityDaoImpl implements ActivityDao {
         select(activityList,selectSql);
         return activityList;
     }
+    public List<Activity> getActivityBySponsorID(String sponsorID){
+        List<Activity> activityList=new ArrayList<>();
+        String selectSql="select * from activity where sponsorID='"+sponsorID+"';";
+        selectRegistrationActivity(activityList,selectSql);
+        return activityList;
+    }
     public void select(List<Activity> activityList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();
@@ -92,5 +99,30 @@ public class ActivityDaoImpl implements ActivityDao {
             System.out.println("查询失败");
         }
     }
+    public void selectRegistrationActivity(List<Activity> activityList,String selectSql){
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                Activity activity=new Activity(resultSet.getString("activityID"),resultSet.getString("title"),
+                        resultSet.getString("startTime"),resultSet.getString("endTime"),resultSet.getString("registrationStartTime"),
+                        resultSet.getString("registrationEndTime"),resultSet.getString("location"),resultSet.getString("activityProfile"),
+                        resultSet.getString("sponsorID"),resultSet.getBytes("image"),resultSet.getString("type"));
+                // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                String time=df.format(new Date());// new Date()为获取当前系统时间
+                if(DBUtill.compare(activity.getRegistrationEndTime(),time)){
+                    activityList.add(activity);
+                }
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+    }
+
 }
 

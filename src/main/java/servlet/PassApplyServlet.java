@@ -1,8 +1,7 @@
 package servlet;
 
-import dao.Stu_apply_activityDao;
-import dao.Stu_apply_activityDaoImpl;
-import dao.Stu_collect_activityDaoImpl;
+import dao.*;
+import entity.Message;
 import entity.Stu_collect_activity;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by lenovo on 2018/7/9.
@@ -39,9 +41,20 @@ public class PassApplyServlet extends HttpServlet {
         Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
         int result=stu_apply_activityDao.passApply(studentID,activityID);
         if(result>0){
-            out.print("pass");
+            out.println("pass");
+            String messageID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
+            MessageDao messageDao=new MessageDaoImpl();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String time=df.format(new Date());// new Date()为获取当前系统时间
+            int result1=messageDao.addPassMessage(messageID,studentID,activityID,time);
+            if(result1>0){
+                out.println("MessageInsert");
+            }
+            else {
+                out.println("MessageInsertFailed");
+            }
         }else{
-            out.print("failedPass");
+            out.println("failedPass");
         }
     }
 
