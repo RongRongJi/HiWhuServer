@@ -67,7 +67,6 @@ public class AddActivityServlet extends HttpServlet {
         }
         String sponsorID=request.getParameter("sponsorID");
         String type=request.getParameter("type");
-        ActivityDao dao = new ActivityDaoImpl();
 
         // 创建文件项目工厂对象
         DiskFileItemFactory factory = new DiskFileItemFactory();

@@ -8,10 +8,12 @@ public class Student {
     private String studentID;
     private String userName;
     private String password;
-    public Student(String studentID,String userName,String password){
+    private String headProtrait;
+    public Student(String studentID,String userName,String password,String headProtrait){
         setStudentID(studentID);
         setUserName(userName);
         setPassword(password);
+        setHeadProtrait(headProtrait);
     }
     public void setStudentID(String studentID) {
         this.studentID = studentID;
@@ -30,5 +32,13 @@ public class Student {
     }
     public String getPassword() {
         return password;
+    }
+
+    public void setHeadProtrait(String headProtrait) {
+        this.headProtrait = headProtrait;
+    }
+
+    public String getHeadProtrait() {
+        return headProtrait;
     }
 }

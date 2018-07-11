@@ -11,11 +11,17 @@ public class Stu_apply_activity {
     private String activityID;
     private String time;
     private String state;
-    public Stu_apply_activity(String studentID,String activityID,String time,String state){
+    private String studentNmae;
+    private String phoneNum;
+    private String qqNum;
+    public Stu_apply_activity(String studentID,String activityID,String time,String state,String studentNmae,String phoneNum,String qqNum){
         setStudentID(studentID);
         setActivityID(activityID);
         setTime(time);
         setState(state);
+        setStudentNmae(studentNmae);
+        setPhoneNum(phoneNum);
+        setQqNum(qqNum);
     }
     public void setStudentID(String studentID) {
         this.studentID = studentID;
@@ -40,5 +46,29 @@ public class Stu_apply_activity {
     }
     public String getState() {
         return state;
+    }
+
+    public void setStudentNmae(String studentNmae) {
+        this.studentNmae = studentNmae;
+    }
+
+    public String getStudentNmae() {
+        return studentNmae;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setQqNum(String qqNum) {
+        this.qqNum = qqNum;
+    }
+
+    public String getQqNum() {
+        return qqNum;
     }
 }
