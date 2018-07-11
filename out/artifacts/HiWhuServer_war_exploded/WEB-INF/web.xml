@@ -171,13 +171,5 @@
         <servlet-name>GetActivityBySponsorIDServlet</servlet-name>
         <url-pattern>/GetActivityBySponsorIDServlet</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>UploadShipServlet</servlet-name>
-        <servlet-class>servlet.UploadShipServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadShipServlet</servlet-name>
-        <url-pattern>/UploadShipServlet</url-pattern>
-    </servlet-mapping>
 
 </web-app>

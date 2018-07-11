@@ -61,16 +61,7 @@ public class UpdateActivityServlet extends HttpServlet {
         }
         String sponsorID=request.getParameter("sponsorID");
         //String type=request.getParameter("type");
-        String type="推荐";
-        /*String activityID="4423e97087724d0c9f3207863bb0584b";
-        String title="aa";
-        String startTime="2018-12-12 13:55"+":00";
-        String endTime="2018-12-12 13:55"+":00";
-        String registrationStartTime="2018-12-12 13:55"+":00";
-        String registrationEndTime="2018-12-12 13:55"+":00";
-        String location="aa";
-        String activityProfile="aa";
-        String sponsorID="22222222222222222222222222222222";*/
+        String type=request.getParameter("type");
         String image=null;
         ActivityDao activityDao=new ActivityDaoImpl();
         int result = activityDao.updateActivity(activityID,title,startTime,endTime,registrationStartTime,registrationEndTime,location,activityProfile,
