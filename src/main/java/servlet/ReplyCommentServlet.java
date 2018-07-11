@@ -1,9 +1,7 @@
 package servlet;
 
-import dao.CommentDao;
-import dao.CommentDaoImpl;
-import dao.MessageDao;
-import dao.MessageDaoImpl;
+import dao.*;
+import entity.Activity;
 import entity.Message;
 import net.sf.json.JSONArray;
 
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,6 +52,17 @@ public class ReplyCommentServlet extends HttpServlet {
         int result=commentDao.replyComment(fromUserID,toUserID,content,activityID,commentID);
         if(result>0){
             out.print("succeed."+activityID);
+            ActivityDao activityDao=new ActivityDaoImpl();
+            Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+            ReplyMessageDao replyMessageDao=new ReplyMessageDaoImpl();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String time=df.format(new Date());// new Date()为获取当前系统时间
+            String rMessageID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
+            int result1=replyMessageDao.addRMessage(rMessageID,time,"您在"+activity.getTitle()+"活动留下的留言收到活动主办方的一条回复："+content,fromUserID,
+                    toUserID,activityID,commentID);
+            if(result1<=0){
+                commentDao.deleteCommentByCommentID(commentID);
+            }
         }else{
             out.print("failed");
         }
