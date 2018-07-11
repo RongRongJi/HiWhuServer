@@ -24,7 +24,10 @@ public class SponsorDaoImpl implements SponsorDao {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
             while (resultSet.next()) {
-                Sponsor sponsor=new Sponsor(resultSet.getString("sponsorID"),resultSet.getString("sponsorName"),resultSet.getString("phoneNum"), resultSet.getString("password"), resultSet.getString("introduction"));
+                Sponsor sponsor=new Sponsor(resultSet.getString("sponsorID"),
+                        resultSet.getString("sponsorName"),resultSet.getString("phoneNum"),
+                        resultSet.getString("password"), resultSet.getString("introduction"),
+                        resultSet.getString("headProtrait"));
                 // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
                 System.out.println(sponsor.toString());
                 sponsorList.add(sponsor);
@@ -47,7 +50,9 @@ public class SponsorDaoImpl implements SponsorDao {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
             while (resultSet.next()) {
-                sponsor=new Sponsor(resultSet.getString("sponsorID"),resultSet.getString("sponsorName"),resultSet.getString("phoneNum"), resultSet.getString("password"), resultSet.getString("introduction"));
+                sponsor=new Sponsor(resultSet.getString("sponsorID"),resultSet.getString("sponsorName"),
+                        resultSet.getString("phoneNum"), resultSet.getString("password"),
+                        resultSet.getString("introduction"),resultSet.getString("headProtrait"));
                 System.out.println(sponsor.toString());
             }
             System.out.println("查询成功");
@@ -66,8 +71,9 @@ public class SponsorDaoImpl implements SponsorDao {
         System.out.println(deleteSql);
         return DBUtill.delete(deleteSql);
     }
-    public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction){
-        String insertSql="insert into sponsor(sponsorID,sponsorName,phoneNum,password,introduction) values ('"+sponsorID+"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"');";
+    public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction,String headProtrait){
+        String insertSql="insert into sponsor(sponsorID,sponsorName,phoneNum,password,introduction) values ('"+sponsorID
+                +"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"','"+headProtrait+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
     }

@@ -11,5 +11,5 @@ public interface SponsorDao {
     //获取当前主办方的信息
     public Sponsor getSponsor(String sponsorID);
     public int deleteSponsor(String sponsorID);
-    public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction);
+    public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction,String headProtrait);
 }

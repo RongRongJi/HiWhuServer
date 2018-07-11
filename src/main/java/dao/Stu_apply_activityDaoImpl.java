@@ -18,9 +18,9 @@ import java.util.List;
  * Created by lenovo on 2018/7/9.
  */
 public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
-    public int addApply(String studentID,String activityID,String time,String state){
+    public int addApply(String studentID,String activityID,String time,String state,String studentName,String phoneNum,String qqNum){
         String insertSql="insert into stu_apply_activity values ('"+studentID+"','"+activityID+"',str_to_date('"
-                +time+"','%Y-%m-%d %H:%i:%s'),'"+state+"');";
+                +time+"','%Y-%m-%d %H:%i:%s'),'"+state+"','"+studentName+"','"+phoneNum+"','"+qqNum+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
 
@@ -172,7 +172,8 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
             while (resultSet.next()) {
                 Stu_apply_activity stu_apply_activity=new Stu_apply_activity(resultSet.getString("studentID"),
                         resultSet.getString("activityID"), resultSet.getString("time"),
-                        resultSet.getString("state"));
+                        resultSet.getString("state"),resultSet.getString("studentName"),
+                        resultSet.getString("phoneNum"),resultSet.getString("qqNum"));
                 // 将查询出的内容添加到list中
                 applyList.add(stu_apply_activity);
             }

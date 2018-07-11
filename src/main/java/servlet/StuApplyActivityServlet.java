@@ -47,6 +47,12 @@ public class StuApplyActivityServlet extends HttpServlet {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String time=df.format(new Date());// new Date()为获取当前系统时间
         String state="1";//1代表已报名未审核，2代表报名已审核已通过，3代表报名已审核被拒绝
+/*        String studentName=request.getParameter("studentName");
+        String phoneNum=request.getParameter("phoneNum");
+        String qqNum=request.getParameter("qqNum");*/
+        String studentName="赵紫微";
+        String phoneNum="18771006771";
+        String qqNum="1179641609";
         // TODO 得到报名信息数据
         String registrationEndTime=new ActivityDaoImpl().selectActivity(activityID).get(0).getRegistrationEndTime();
         if(DBUtill.compare(time,registrationEndTime)){
@@ -56,7 +62,7 @@ public class StuApplyActivityServlet extends HttpServlet {
                 out.print("applied");
             }
             else {
-                int result = stu_apply_activityDao.addApply(studentID,activityID,time,state);
+                int result = stu_apply_activityDao.addApply(studentID,activityID,time,state,studentName,phoneNum,qqNum);
                 if(result>0){
                     out.print("succeed");
                 }else{

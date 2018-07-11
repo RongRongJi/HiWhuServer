@@ -10,12 +10,14 @@ public class Sponsor {
     private String phoneNum;
     private String password;
     private String introduction;
-    public Sponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction){
+    private String headProtrait;
+    public Sponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction,String headProtrait){
         setSponsorID(sponsorID);
         setSponsorName(sponsorName);
         setPhoneNum(phoneNum);
         setPassword(password);
         setIntroduction(introduction);
+        setHeadProtrait(headProtrait);
     }
     public void setSponsorID(String sponsorID) {
         this.sponsorID = sponsorID;
@@ -46,5 +48,13 @@ public class Sponsor {
     }
     public String getIntroduction() {
         return introduction;
+    }
+
+    public void setHeadProtrait(String headProtrait) {
+        this.headProtrait = headProtrait;
+    }
+
+    public String getHeadProtrait() {
+        return headProtrait;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by lenovo on 2018/7/9.
  */
 public interface Stu_apply_activityDao {
-    public int addApply(String studentID,String activityID,String time,String state);
+    public int addApply(String studentID,String activityID,String time,String state,String studentName,String phoneNum,String qqNum);
     public List<Activity> getActivityByStudentID(String studentID);
     public List<Student> getStudentByActivityID(String activityID);
     public List<Activity> getActivityByStudentIDAndState2(String studentID);

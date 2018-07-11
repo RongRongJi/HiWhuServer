@@ -23,8 +23,9 @@ public class StudentDaoImpl implements StudentDao {
         System.out.println(deleteSql);
         return DBUtill.delete(deleteSql);
     }
-    public int addStudent(String studentID,String username,String password){
-        String insertSql="insert into student(studentId,userName,password) values ('"+studentID+"','"+username+"','"+password+"');";
+    public int addStudent(String studentID,String username,String password,String headProtrait){
+        String insertSql="insert into student(studentId,userName,password) values ('"+studentID+"','"+username+
+                "','"+password+"','"+headProtrait+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
     }
@@ -41,7 +42,8 @@ public class StudentDaoImpl implements StudentDao {
         Statement statement= DBUtill.getConnect().createStatement();
         ResultSet resultSet=statement.executeQuery(selectSql);
         while (resultSet.next()) {
-        Student stu=new Student(resultSet.getString("studentID"),resultSet.getString("userName"),resultSet.getString("password"));
+        Student stu=new Student(resultSet.getString("studentID"),resultSet.getString("userName"),
+                resultSet.getString("password"),resultSet.getString("headProtrait"));
         // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
         System.out.println(stu.toString());
         studentList.add(stu);
