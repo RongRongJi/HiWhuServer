@@ -24,7 +24,7 @@ public class StudentDaoImpl implements StudentDao {
         return DBUtill.delete(deleteSql);
     }
     public int addStudent(String studentID,String username,String password,String headProtrait){
-        String insertSql="insert into student(studentId,userName,password) values ('"+studentID+"','"+username+
+        String insertSql="insert into student(studentId,userName,password,headProtrait) values ('"+studentID+"','"+username+
                 "','"+password+"','"+headProtrait+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
