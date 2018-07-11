@@ -179,5 +179,20 @@
         <servlet-name>GetCurrentSponsorServlet</servlet-name>
         <url-pattern>/GetCurrentSponsorServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>SponsorGetMessageServlet</servlet-name>
+        <servlet-class>servlet.SponsorGetMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SponsorGetMessageServlet</servlet-name>
+        <url-pattern>/SponsorGetMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentGetReplyServlet</servlet-name>
+        <servlet-class>servlet.StudentGetReplyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentGetReplyServlet</servlet-name>
+        <url-pattern>/StudentGetReplyServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

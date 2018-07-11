@@ -18,4 +18,9 @@ public class CommentDaoImpl implements CommentDao {
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
     }
+    public int deleteCommentByCommentID(String commentID){
+        String deleteSql="delete from comment where  commentID='"+commentID+"';";
+        System.out.print(deleteSql);
+        return DBUtill.delete(deleteSql);
+    }
 }
