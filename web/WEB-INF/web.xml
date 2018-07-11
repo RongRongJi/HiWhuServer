@@ -195,4 +195,12 @@
         <servlet-name>StudentGetReplyServlet</servlet-name>
         <url-pattern>/StudentGetReplyServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCurrentStudentServlet</servlet-name>
+        <servlet-class>servlet.GetCurrentStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCurrentStudentServlet</servlet-name>
+        <url-pattern>/GetCurrentStudentServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

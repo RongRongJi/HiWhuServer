@@ -18,6 +18,28 @@ public class StudentDaoImpl implements StudentDao {
         select(studentList,selectSql);
         return studentList;
     }
+    //获取当前学生用户的信息
+    public Student getStudent(String studentID){
+        Student student = null;
+        String selectSql="select * from student where studentID='"+studentID+"'";
+        System.out.println();
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                student = new Student(resultSet.getString("studentID"),resultSet.getString("userName"),
+                        resultSet.getString("password"),resultSet.getString("headProtrait"));
+                System.out.println(student.toString());
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+        return student;
+    }
     public int deleteStudent(String studentID){
         String deleteSql="delete Student where studentID='"+studentID+"'";
         System.out.println(deleteSql);
