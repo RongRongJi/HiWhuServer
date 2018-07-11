@@ -38,6 +38,29 @@ public class SponsorDaoImpl implements SponsorDao {
         }
         return sponsorList;
     }
+    //获取当前主办方的信息
+    public Sponsor getSponsor(String sponsorID){
+        Sponsor sponsor = null;
+        String selectSql="select * from sponsor where sponsorID='"+sponsorID+"'";
+        System.out.println();
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(selectSql);
+            while (resultSet.next()) {
+                sponsor=new Sponsor(resultSet.getString("sponsorID"),resultSet.getString("sponsorName"),resultSet.getString("phoneNum"), resultSet.getString("password"), resultSet.getString("introduction"));
+                System.out.println(sponsor.toString());
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+        return sponsor;
+    }
+
+
     public int deleteSponsor(String sponsorID){
         String deleteSql="delete sponsor where sponsorID='"+sponsorID+"'";
         System.out.println(deleteSql);

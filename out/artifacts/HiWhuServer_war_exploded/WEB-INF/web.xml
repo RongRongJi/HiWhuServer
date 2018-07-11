@@ -171,5 +171,13 @@
         <servlet-name>GetActivityBySponsorIDServlet</servlet-name>
         <url-pattern>/GetActivityBySponsorIDServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCurrentSponsorServlet</servlet-name>
+        <servlet-class>servlet.GetCurrentSponsorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCurrentSponsorServlet</servlet-name>
+        <url-pattern>/GetCurrentSponsorServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>
