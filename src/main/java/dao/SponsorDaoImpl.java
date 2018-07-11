@@ -72,7 +72,7 @@ public class SponsorDaoImpl implements SponsorDao {
         return DBUtill.delete(deleteSql);
     }
     public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction,String headProtrait){
-        String insertSql="insert into sponsor(sponsorID,sponsorName,phoneNum,password,introduction) values ('"+sponsorID
+        String insertSql="insert into sponsor(sponsorID,sponsorName,phoneNum,password,introduction,headProtrait) values ('"+sponsorID
                 +"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"','"+headProtrait+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);

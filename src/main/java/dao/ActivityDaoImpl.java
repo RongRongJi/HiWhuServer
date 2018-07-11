@@ -35,7 +35,7 @@ public class ActivityDaoImpl implements ActivityDao {
         String insertSql="insert into activity values ('"+activityID+"','"+title+"',str_to_date('"+startTime+"','%Y-%m-%d %H:%i:%s')," +
                 "str_to_date('"+endTime+"','%Y-%m-%d %H:%i:%s'),str_to_date('"+registrationStartTime +"','%Y-%m-%d %H:%i:%s')," +
                 "str_to_date('"+registrationEndTime+"','%Y-%m-%d %H:%i:%s'),'"+location+"','"+activityProfile+"','"
-                +sponsorID+"','"+image+"',type='"+type+"');";
+                +sponsorID+"','"+image+"','"+type+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
     }
