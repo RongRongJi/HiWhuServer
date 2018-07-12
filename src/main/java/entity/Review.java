@@ -8,8 +8,15 @@ public class Review {
     private String reviewID;
     private String title;
     private String essay;
-    private String activity;
-
+    private String activityID;
+    private String sponsorID;
+    public Review(String reviewID,String title,String essay,String activityID,String sponsorID){
+        setReviewID(reviewID);
+        setTitle(title);
+        setEssay(essay);
+        setActivityID(activityID);
+        setSponsorID(sponsorID);
+    }
     public void setReviewID(String reviewID) {
         this.reviewID = reviewID;
     }
@@ -28,10 +35,14 @@ public class Review {
     public String getEssay() {
         return essay;
     }
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setActivityID(String activityID) {
+        this.activityID = activityID;
     }
-    public String getActivity() {
-        return activity;
+    public String getActivityID() {return activityID;}
+    public void setSponsorID(String sponsorID) {
+        this.sponsorID = sponsorID;
+    }
+    public String getSponsorID() {
+        return sponsorID;
     }
 }

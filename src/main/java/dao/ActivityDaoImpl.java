@@ -3,6 +3,7 @@ package dao;
 import database.DBUtill;
 import entity.Activity;
 import entity.Sponsor;
+import net.sf.json.JSONArray;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,7 +86,7 @@ public class ActivityDaoImpl implements ActivityDao {
     public List<Activity> getActivityBySponsorID(String sponsorID){
         List<Activity> activityList=new ArrayList<>();
         String selectSql="select * from activity where sponsorID='"+sponsorID+"';";
-        selectRegistrationActivity(activityList,selectSql);
+        select(activityList,selectSql);
         return activityList;
     }
     public void select(List<Activity> activityList,String selectSql){
@@ -133,5 +134,32 @@ public class ActivityDaoImpl implements ActivityDao {
         }
     }
 
+    //紫微要的函数
+    public String starApplyActivity(String type){
+        //所有活动
+        List<Activity> activityList=new ArrayList<>();
+        //收藏的活动
+        List<Activity> activityList1=new ArrayList<>();
+        //报名的活动
+        List<Activity> activityList2=new ArrayList<>();
+        String selectSql="select * from activity where type='"+type+"';";
+        String selectSql1="select *\n" +
+                "from activity a,stu_collect_activity sca\n" +
+                "where a.activityId=sca.activityId and a.type='"+type+"';";
+        String selectSql2="select *\n" +
+                "from activity a,stu_apply_activity saa\n" +
+                "where a.activityId=saa.activityId and a.type='"+type+"';";
+        select(activityList,selectSql);
+        select(activityList1,selectSql1);
+        select(activityList2,selectSql2);
+        ActivityDao activityDao = new ActivityDaoImpl();
+        JSONArray array = JSONArray.fromObject(activityList);
+        JSONArray array1 = JSONArray.fromObject(activityList1);
+        JSONArray array2 = JSONArray.fromObject(activityList2);
+        String strArray = array.toString();
+        String strArray1=array1.toString();
+        String strArray2=array2.toString();
+        return strArray+"\t\r\t\r"+strArray1+"\t\r\t\r"+strArray2;
+    }
 }
 

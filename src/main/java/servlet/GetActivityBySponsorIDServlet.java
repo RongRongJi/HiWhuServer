@@ -38,8 +38,8 @@ public class GetActivityBySponsorIDServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        String sponsorID=request.getParameter("sponsorID");
-        String sponsorID="7ad528dd6c8f46bf8407de39487de1a3";
+        String sponsorID=request.getParameter("sponsorID");
+        //String sponsorID="7ad528dd6c8f46bf8407de39487de1a3";
         ActivityDao activityDao=new ActivityDaoImpl();
         List<Activity> activityList=activityDao.getActivityBySponsorID(sponsorID);
         JSONArray array = JSONArray.fromObject(activityList);

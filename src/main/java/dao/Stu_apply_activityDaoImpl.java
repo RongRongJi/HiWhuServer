@@ -36,7 +36,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
     public List<Activity> getActivityByStudentIDAndState2(String studentID){
         List<Activity> activityList=new ArrayList<>();
         String selectSql="select * from stu_apply_activity where studentID='"+studentID+"' and state='2';";
-        selectActivity1(activityList,selectSql);
+        selectActivity(activityList,selectSql);
         return activityList;
     }
     //已参加
@@ -71,38 +71,37 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
 
     //活动主办方通过一个活动报名
     public int passApply(String studentID,String activityID){
-        String updateSql="update stu_apply_activity set state='2' where studentID='"+studentID+"' and activityID='"+activityID+"';";
-        System.out.println(updateSql);
-        return DBUtill.update(updateSql);
+        ActivityDao activityDao=new ActivityDaoImpl();
+        Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time=df.format(new Date());// new Date()为获取当前系统时间
+        if(DBUtill.compare(activity.getRegistrationEndTime(),time)&&DBUtill.compare(time,activity.getStartTIme())){
+            String updateSql="update stu_apply_activity set state='2' where studentID='"+studentID+"' and activityID='"+activityID+"';";
+            System.out.println(updateSql);
+            return DBUtill.update(updateSql);
+        }
+        else {
+            return 0;
+        }
     }
 
     //活动主办方拒绝一个活动报名
     public int rejectApply(String studentID,String activityID){
-        String updateSql="update stu_apply_activity set state='3' where studentID='"+studentID+"' and activityID='"+activityID+"';";
-        System.out.println(updateSql);
-        return DBUtill.update(updateSql);
-    }
-    //待审核
-    public void selectActivity(List<Activity> activityList,String selectSql){
-        try {
-            Statement statement= DBUtill.getConnect().createStatement();
-            ResultSet resultSet=statement.executeQuery(selectSql);
-            while (resultSet.next()) {
-                String activityID= resultSet.getString("activityID");
-                ActivityDao activityDao=new ActivityDaoImpl();
-                Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
-                activityList.add(activity);
-            }
-            System.out.println("查询成功");
-            statement.close();
-            DBUtill.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("查询失败");
+        ActivityDao activityDao=new ActivityDaoImpl();
+        Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time=df.format(new Date());// new Date()为获取当前系统时间
+        if(DBUtill.compare(activity.getRegistrationEndTime(),time)&&DBUtill.compare(time,activity.getStartTIme())){
+            String updateSql="update stu_apply_activity set state='3' where studentID='"+studentID+"' and activityID='"+activityID+"';";
+            System.out.println(updateSql);
+            return DBUtill.update(updateSql);
+        }
+        else {
+            return 0;
         }
     }
-    //待参加，在活动结束时间之前
-    public void selectActivity1(List<Activity> activityList,String selectSql){
+    //待审核/待参加
+    public void selectActivity(List<Activity> activityList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
@@ -112,7 +111,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
                 Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
                 String time=df.format(new Date());// new Date()为获取当前系统时间
-                if(DBUtill.compare(time,activity.getEndTime())){
+                if(DBUtill.compare(activity.getRegistrationEndTime(),time)&&DBUtill.compare(time,activity.getStartTIme())){
                     activityList.add(activity);
                 }
             }
@@ -135,7 +134,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
                 Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
                 String time=df.format(new Date());// new Date()为获取当前系统时间
-                if(!DBUtill.compare(time,activity.getEndTime())){
+                if(DBUtill.compare(activity.getStartTIme(),time)){
                     activityList.add(activity);
                 }
             }
@@ -152,10 +151,17 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
             while (resultSet.next()) {
+                String activityID= resultSet.getString("activityID");
+                ActivityDao activityDao=new ActivityDaoImpl();
+                Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                String time=df.format(new Date());// new Date()为获取当前系统时间
                 String studentID= resultSet.getString("studentID");
                 StudentDao studentDao=new StudentDaoImpl();
                 Student student=studentDao.selectStudent(studentID).get(0);
-                studentList.add(student);
+                if(DBUtill.compare(time,activity.getRegistrationEndTime())&&DBUtill.compare(activity.getRegistrationStartTime(),time)){
+                    studentList.add(student);
+                }
             }
             System.out.println("查询成功");
             statement.close();
