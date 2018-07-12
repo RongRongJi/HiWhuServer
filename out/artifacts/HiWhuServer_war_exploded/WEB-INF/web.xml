@@ -203,4 +203,12 @@
         <servlet-name>GetCurrentStudentServlet</servlet-name>
         <url-pattern>/GetCurrentStudentServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCurrentActivityServlet</servlet-name>
+        <servlet-class>servlet.GetCurrentActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCurrentActivityServlet</servlet-name>
+        <url-pattern>/GetCurrentActivityServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
