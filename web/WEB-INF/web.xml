@@ -219,4 +219,12 @@
         <servlet-name>UpdateSponsorServlet</servlet-name>
         <url-pattern>/UpdateSponsorServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCurrentCollectionServlet</servlet-name>
+        <servlet-class>servlet.GetCurrentCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCurrentCollectionServlet</servlet-name>
+        <url-pattern>/GetCurrentCollectionServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
