@@ -2,8 +2,6 @@ package servlet;
 
 import dao.*;
 import entity.Activity;
-import entity.Message;
-import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -47,14 +44,14 @@ public class AddCommentServlet extends HttpServlet {
         String activityID="8342fc4d55f34d19956a8c230b628e4d";
         String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         CommentDao commentDao=new CommentDaoImpl();
-        int result=commentDao.addComment(fromUserID,content,activityID,commentID);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time=df.format(new Date());// new Date()为获取当前系统时间
+        int result=commentDao.addComment(fromUserID,content,activityID,commentID,time);
         if(result>0){
             out.print("succeed."+activityID);
             ActivityDao activityDao=new ActivityDaoImpl();
             Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
             LeaveMessageDao leaveMessageDao=new LeaveMessageDaoImpl();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-            String time=df.format(new Date());// new Date()为获取当前系统时间
             String lMessageID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
             int result1=leaveMessageDao.addLMessage(lMessageID,time,"您发布的"+activity.getTitle()+"活动收到一条留言："+content,fromUserID,
                     activity.getSponsorID(),activityID,commentID);

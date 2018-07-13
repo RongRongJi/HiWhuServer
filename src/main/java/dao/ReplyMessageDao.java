@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ReplyMessageDao {
     public List<ReplyMessage> getMessageByStudentID(String studentID);
-    public int addRMessage(String rMessageID,String time,String content,String fromSponsorID,String toStudentID,String activityID,String commentID);
+    public int addRMessage(String rMessageID, String time, String content, String fromSponsorID, String toStudentID, String activityID, String commentID, String lMessageID);
 }

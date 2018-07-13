@@ -12,4 +12,6 @@ public interface SponsorDao {
     public Sponsor getSponsor(String sponsorID);
     public int deleteSponsor(String sponsorID);
     public int addSponsor(String sponsorID,String sponsorName,String phoneNum,String password,String introduction,String headProtrait);
+    public int updateSponsor(String sponsorID,String sponsorName,String phoneNum,String introduction);
+    public int updateImage(String sponsorID,String headProtrait);
 }

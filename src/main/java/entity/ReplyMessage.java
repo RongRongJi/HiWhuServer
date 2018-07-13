@@ -11,7 +11,9 @@ public class ReplyMessage {
     private String toStudentID;
     private String activityID;
     private String commentID;
-    public ReplyMessage(String rMessageID, String time, String content, String fromSponsorID, String toStudentID, String activityID,String commentID){
+    private String lMessageID;
+    public ReplyMessage(String rMessageID, String time, String content, String fromSponsorID, String toStudentID, String activityID,
+                        String commentID,String lMessageID){
         setrMessageID(rMessageID);
         setContent(content);
         setFromSponsorID(fromSponsorID);
@@ -19,6 +21,7 @@ public class ReplyMessage {
         setTime(time);
         setActivityID(activityID);
         setCommentID(commentID);
+        setlMessageID(lMessageID);
     }
     public void setContent(String content) {
         this.content = content;
@@ -74,5 +77,13 @@ public class ReplyMessage {
 
     public String getCommentID() {
         return commentID;
+    }
+
+    public void setlMessageID(String lMessageID) {
+        this.lMessageID = lMessageID;
+    }
+
+    public String getlMessageID() {
+        return lMessageID;
     }
 }

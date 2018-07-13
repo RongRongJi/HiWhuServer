@@ -17,6 +17,25 @@ public class LeaveMessageDaoImpl implements LeaveMessageDao {
         List<LeaveMessage> lMessageList=new ArrayList<>();
         String selectSql="select * from leavemessage where toSponsorID='"+sponsorID+"';";
         System.out.print(selectSql);
+        select(lMessageList,selectSql);
+        return lMessageList;
+    }
+    public int addLMessage(String lMessageID, String time, String content, String fromStudentID, String toSponsorID, String activityID,String commentID){
+        String insertSql="insert into leavemessage values('"+lMessageID+"','"+time+"','"+content+"','"+fromStudentID+"','"+toSponsorID+"','"
+                +activityID+"','"+commentID+"');";
+        System.out.print(insertSql);
+        return DBUtill.insert(insertSql);
+    }
+
+    public List<LeaveMessage> getMessageByCommentID(String commentID){
+        List<LeaveMessage> lMessageList=new ArrayList<>();
+        String selectSql="select * from leavemessage where commentID='"+commentID+"';";
+        System.out.print(selectSql);
+        select(lMessageList,selectSql);
+        return lMessageList;
+    }
+
+    public void select(List<LeaveMessage> lMessageList,String selectSql){
         try {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
@@ -34,12 +53,5 @@ public class LeaveMessageDaoImpl implements LeaveMessageDao {
             e.printStackTrace();
             System.out.println("查询失败");
         }
-        return lMessageList;
-    }
-    public int addLMessage(String lMessageID, String time, String content, String fromStudentID, String toSponsorID, String activityID,String commentID){
-        String insertSql="insert into leavemessage values('"+lMessageID+"','"+time+"','"+content+"','"+fromStudentID+"','"+toSponsorID+"','"
-                +activityID+"','"+commentID+"');";
-        System.out.print(insertSql);
-        return DBUtill.insert(insertSql);
     }
 }

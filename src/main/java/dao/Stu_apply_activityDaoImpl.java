@@ -2,6 +2,7 @@ package dao;
 
 import database.DBUtill;
 import entity.Activity;
+import entity.StuApplyResult;
 import entity.Stu_apply_activity;
 import entity.Student;
 
@@ -67,6 +68,15 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
         String deleteSql="delete from stu_apply_activity where studentID='"+studentID+"' and activityID='"+activityID+"';";
         System.out.println(deleteSql);
         return DBUtill.insert(deleteSql);
+    }
+
+    public List<Stu_apply_activity> getAllAppliedActivityResult(String studentID){
+        List<Stu_apply_activity> stuApplyResultArrayList =new ArrayList<>();
+        String selectSql="select *\n" +
+                "from stu_apply_activity saa,activity a\n" +
+                "where saa.studentId='"+studentID+"' and saa.activityId=a.activityId and saa.state<>'1';";
+        select(stuApplyResultArrayList,selectSql);
+        return stuApplyResultArrayList;
     }
 
     //活动主办方通过一个活动报名
@@ -191,4 +201,5 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
             System.out.println("查询失败");
         }
     }
+
 }

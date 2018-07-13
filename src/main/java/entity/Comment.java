@@ -5,16 +5,18 @@ package entity;
  */
 public class Comment {
     private String fromUserID;
-    private String toUsreID;
+    private String refCommentID;
     private String content;
     private String activityID;
     private String commentID;
-    public Comment(String fromUserID,String toUsreID,String content,String activityID,String commentID){
+    private String time;
+    public Comment(String fromUserID,String refCommentID,String content,String activityID,String commentID,String time){
         setActivityID(activityID);
         setContent(commentID);
         setContent(content);
         setFromUserID(fromUserID);
-        setToUsreID(toUsreID);
+        setRefCommentID(refCommentID);
+        setTime(time);
     }
 
     public void setFromUserID(String fromUserID) {
@@ -33,8 +35,8 @@ public class Comment {
         this.content = content;
     }
 
-    public void setToUsreID(String toUsreID) {
-        this.toUsreID = toUsreID;
+    public void setRefCommentID(String toUsreID) {
+        this.refCommentID = toUsreID;
     }
 
     public String getActivityID() {
@@ -53,7 +55,15 @@ public class Comment {
         return fromUserID;
     }
 
-    public String getToUsreID() {
-        return toUsreID;
+    public String getRefCommentID() {
+        return refCommentID;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface LeaveMessageDao {
     public List<LeaveMessage> getMessageBySponsorID(String sponsorID);
-    public int addLMessage(String lMessageID, String time, String content, String fromStudentID, String toSponsorID, String activityID,String commentID);
+    public int addLMessage(String lMessageID, String time, String content, String fromStudentID, String toSponsorID, String activityID, String commentID);
+    public List<LeaveMessage> getMessageByCommentID(String commentID);
 }

@@ -22,7 +22,8 @@ public class ReplyMessageDaoImpl implements ReplyMessageDao {
             while (resultSet.next()) {
                 ReplyMessage replyMessage=new ReplyMessage(resultSet.getString("rMessageID"),resultSet.getString("time"),
                         resultSet.getString("content"),resultSet.getString("fromSponsorID"),
-                        resultSet.getString("toStudentID"),resultSet.getString("activityID"),resultSet.getString("commentID"));
+                        resultSet.getString("toStudentID"),resultSet.getString("activityID"),
+                        resultSet.getString("commentID"),resultSet.getString("lMessageID"));
                 // 将查询出的内容添加到list中，其中userName为数据库中的字段名称
                 rMessageList.add(replyMessage);
             }
@@ -35,9 +36,9 @@ public class ReplyMessageDaoImpl implements ReplyMessageDao {
         }
         return rMessageList;
     }
-    public int addRMessage(String rMessageID,String time,String content,String fromSponsorID,String toStudentID,String activityID,String commentID){
+    public int addRMessage(String rMessageID,String time,String content,String fromSponsorID,String toStudentID,String activityID,String commentID,String lMessageID){
         String insertSql="insert into replymessage values('"+rMessageID+"','"+time+"','"+content+"','"+fromSponsorID+"','"+toStudentID+"','"
-                +activityID+"','"+commentID+"');";
+                +activityID+"','"+commentID+"','"+lMessageID+"');";
         System.out.print(insertSql);
         return DBUtill.insert(insertSql);
     }

@@ -142,13 +142,13 @@ public class ActivityDaoImpl implements ActivityDao {
         List<Activity> activityList1=new ArrayList<>();
         //报名的活动
         List<Activity> activityList2=new ArrayList<>();
-        String selectSql="select * from activity where type='"+type+"';";
+        String selectSql="select * from activity;";
         String selectSql1="select *\n" +
                 "from activity a,stu_collect_activity sca\n" +
-                "where a.activityId=sca.activityId and a.type='"+type+"';";
+                "where a.activityId=sca.activityId;";
         String selectSql2="select *\n" +
                 "from activity a,stu_apply_activity saa\n" +
-                "where a.activityId=saa.activityId and a.type='"+type+"';";
+                "where a.activityId=saa.activityId;";
         select(activityList,selectSql);
         select(activityList1,selectSql1);
         select(activityList2,selectSql2);

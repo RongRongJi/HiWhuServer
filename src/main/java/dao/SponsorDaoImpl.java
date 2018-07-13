@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static database.DBUtill.delete;
+import static database.DBUtill.update;
 
 /**
  * Created by lenovo on 2018/7/5.
@@ -76,5 +77,18 @@ public class SponsorDaoImpl implements SponsorDao {
                 +"','"+sponsorName+"','"+phoneNum+"','"+password+"','"+introduction+"','"+headProtrait+"');";
         System.out.println(insertSql);
         return DBUtill.insert(insertSql);
+    }
+
+    public int updateSponsor(String sponsorID,String sponsorName,String phoneNum,String introduction){
+        String updateSql = "update sponsor set sponsorName='"+sponsorName+"',phoneNum='"+phoneNum+"',introduction='"+
+                introduction+"' where sponsorID='"+sponsorID+"';";
+        System.out.println(updateSql);
+        return DBUtill.update(updateSql);
+    }
+
+    public int updateImage(String sponsorID,String headProtrait){
+        String updateSql = "update sponsor set headProtrait='"+headProtrait+"' where sponsorID='"+sponsorID+"';";
+        System.out.println(updateSql);
+        return DBUtill.update(updateSql);
     }
 }

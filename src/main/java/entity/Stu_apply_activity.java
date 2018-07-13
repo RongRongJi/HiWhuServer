@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Date;
-
 /**
  * Created by lenovo on 2018/7/4.
  */
@@ -11,15 +9,15 @@ public class Stu_apply_activity {
     private String activityID;
     private String time;
     private String state;
-    private String studentNmae;
+    private String studentName;
     private String phoneNum;
     private String qqNum;
-    public Stu_apply_activity(String studentID,String activityID,String time,String state,String studentNmae,String phoneNum,String qqNum){
+    public Stu_apply_activity(String studentID,String activityID,String time,String state,String studentName,String phoneNum,String qqNum){
         setStudentID(studentID);
         setActivityID(activityID);
         setTime(time);
         setState(state);
-        setStudentNmae(studentNmae);
+        setStudentName(studentName);
         setPhoneNum(phoneNum);
         setQqNum(qqNum);
     }
@@ -48,12 +46,12 @@ public class Stu_apply_activity {
         return state;
     }
 
-    public void setStudentNmae(String studentNmae) {
-        this.studentNmae = studentNmae;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public String getStudentNmae() {
-        return studentNmae;
+    public String getStudentName() {
+        return studentName;
     }
 
     public void setPhoneNum(String phoneNum) {

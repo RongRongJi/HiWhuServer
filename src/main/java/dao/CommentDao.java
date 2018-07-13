@@ -1,10 +1,17 @@
 package dao;
 
+import entity.Comment;
+import entity.CommentAndReply;
+
+import java.util.List;
+
 /**
  * Created by lenovo on 2018/7/10.
  */
 public interface CommentDao {
-    public int addComment(String fromUserID,String content,String commentID,String activityID);
-    public int replyComment(String fromUserID,String toUserID,String content,String commentID,String activityID);
+    public int addComment(String fromUserID, String content, String commentID, String activityID, String time);
+    public int replyComment(String fromUserID, String refCommentID, String content, String commentID, String activityID, String time);
     public int deleteCommentByCommentID(String commentID);
+    public List<Comment> getCommentByCommentID(String commentID);
+    public List<CommentAndReply> getCommentAndReplyByActivityID(String activityID);
 }

@@ -2,9 +2,7 @@ package servlet;
 
 import dao.*;
 import entity.Activity;
-import entity.Message;
-import net.sf.json.JSONArray;
-
+import entity.Comment;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -39,27 +36,30 @@ public class ReplyCommentServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 //        String fromUserID=request.getParameter("fromUserID");
-//        String toUserID=request.getParameter("toUserID");
+//        String refCommentID=request.getParameter("refCommentID");
 //        String content=request.getParameter("content");
 //        String activityID=request.getParameter("activityID");
 //        String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         String fromUserID="81fb8660dfab43f6b23fc0a444f1dd7b";
-        String toUserID="2016302580228";
+        String refCommentID="2d5d26decf734bdf96642835fa177b1c";
         String content="ok";
         String activityID="8342fc4d55f34d19956a8c230b628e4d";
         String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         CommentDao commentDao=new CommentDaoImpl();
-        int result=commentDao.replyComment(fromUserID,toUserID,content,activityID,commentID);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time=df.format(new Date());// new Date()为获取当前系统时间
+        int result=commentDao.replyComment(fromUserID,refCommentID,content,activityID,commentID,time);
         if(result>0){
             out.print("succeed."+activityID);
             ActivityDao activityDao=new ActivityDaoImpl();
             Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
+            Comment comment=commentDao.getCommentByCommentID(refCommentID).get(0);
+            LeaveMessageDao leaveMessageDao=new LeaveMessageDaoImpl();
+            String lMessageID=leaveMessageDao.getMessageByCommentID(refCommentID).get(0).getlMessageID();
             ReplyMessageDao replyMessageDao=new ReplyMessageDaoImpl();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-            String time=df.format(new Date());// new Date()为获取当前系统时间
             String rMessageID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
             int result1=replyMessageDao.addRMessage(rMessageID,time,"您在"+activity.getTitle()+"活动留下的留言收到活动主办方的一条回复："+content,fromUserID,
-                    toUserID,activityID,commentID);
+                    comment.getFromUserID(),activityID,commentID,lMessageID);
             if(result1<=0){
                 commentDao.deleteCommentByCommentID(commentID);
             }

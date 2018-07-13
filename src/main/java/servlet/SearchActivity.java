@@ -36,8 +36,11 @@ public class SearchActivity extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        String keyStr=request.getParameter("keyStr");
-        String keyStr="国软";
+        String keyStr=request.getParameter("keyStr");
+        if(keyStr!=null){
+            keyStr = new String(keyStr.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+        }
+        //String keyStr="国软";
         try{
             ActivityDao activityDao=new ActivityDaoImpl();
             List<Activity> activityList=activityDao.selectActivity(keyStr);

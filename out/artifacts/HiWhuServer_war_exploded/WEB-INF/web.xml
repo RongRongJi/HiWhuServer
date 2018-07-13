@@ -211,4 +211,12 @@
         <servlet-name>GetCurrentActivityServlet</servlet-name>
         <url-pattern>/GetCurrentActivityServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <servlet-class>servlet.UpdateSponsorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <url-pattern>/UpdateSponsorServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
