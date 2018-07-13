@@ -36,8 +36,8 @@ public class GetAppliedActivityByStudentIDServlet extends HttpServlet {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         PrintWriter pw=resp.getWriter();
-//        String studentID=req.getParameter("studentID");
-        String studentID="2016302580228";
+        String studentID=req.getParameter("studentID");
+        //String studentID="2016302580228";
         try{
             Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
             List<Activity> applyList=stu_apply_activityDao.getActivityByStudentID(studentID);

@@ -34,10 +34,10 @@ public class PassApplyServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-//        String studentID=request.getParameter("studentID");
-//        String activityID=request.getParameter("activityID");
-        String studentID="2016302580228";
-        String activityID="8342fc4d55f34d19956a8c230b628e4d";
+        String studentID=request.getParameter("studentID");
+        String activityID=request.getParameter("activityID");
+        //String studentID="2016302580228";
+        //String activityID="8342fc4d55f34d19956a8c230b628e4d";
         Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
         int result=stu_apply_activityDao.passApply(studentID,activityID);
         if(result>0){

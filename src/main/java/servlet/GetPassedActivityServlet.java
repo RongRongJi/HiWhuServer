@@ -38,8 +38,8 @@ public class GetPassedActivityServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter pw=response.getWriter();
-//        String studentID=req.getParameter("studentID");
-        String studentID="2016302580228";
+        String studentID=request.getParameter("studentID");
+        //String studentID="2016302580228";
         try{
             Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
             List<Activity> applyList=stu_apply_activityDao.getActivityByStudentIDAndState2(studentID);

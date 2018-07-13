@@ -75,7 +75,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
         Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String time=df.format(new Date());// new Date()为获取当前系统时间
-        if(DBUtill.compare(activity.getRegistrationEndTime(),time)&&DBUtill.compare(time,activity.getStartTIme())){
+        if(DBUtill.compare(time,activity.getRegistrationEndTime())&&DBUtill.compare(activity.getRegistrationStartTime(),time)){
             String updateSql="update stu_apply_activity set state='2' where studentID='"+studentID+"' and activityID='"+activityID+"';";
             System.out.println(updateSql);
             return DBUtill.update(updateSql);
@@ -111,7 +111,7 @@ public class Stu_apply_activityDaoImpl implements Stu_apply_activityDao {
                 Activity activity=activityDao.getActivityByActivityID(activityID).get(0);
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
                 String time=df.format(new Date());// new Date()为获取当前系统时间
-                if(DBUtill.compare(activity.getRegistrationEndTime(),time)&&DBUtill.compare(time,activity.getStartTIme())){
+                if(DBUtill.compare(time,activity.getStartTIme())){
                     activityList.add(activity);
                 }
             }
