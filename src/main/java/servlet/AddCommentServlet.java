@@ -35,14 +35,17 @@ public class AddCommentServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        String fromUserID=request.getParameter("fromUserID");
-//        String content=request.getParameter("content");
-//        String activityID=request.getParameter("activityID");
-//        String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
-        String fromUserID="2016302580228";
-        String content="你好";
-        String activityID="8342fc4d55f34d19956a8c230b628e4d";
+        String fromUserID=request.getParameter("fromUserID");
+        String content=request.getParameter("content");
+        if(content!=null){
+            content = new String(content.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+        }
+        String activityID=request.getParameter("activityID");
         String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
+        //String fromUserID="2016302580228";
+        //String content="你好";
+        //String activityID="8342fc4d55f34d19956a8c230b628e4d";
+        //String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         CommentDao commentDao=new CommentDaoImpl();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String time=df.format(new Date());// new Date()为获取当前系统时间

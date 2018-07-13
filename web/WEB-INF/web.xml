@@ -227,4 +227,12 @@
         <servlet-name>GetCurrentCollectionServlet</servlet-name>
         <url-pattern>/GetCurrentCollectionServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCommentByActivityIDServlet</servlet-name>
+        <servlet-class>servlet.GetCommentByActivityIDServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCommentByActivityIDServlet</servlet-name>
+        <url-pattern>/GetCommentByActivityIDServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -56,18 +56,22 @@ public class CommentDaoImpl implements CommentDao {
         String selectSql="select *\n" +
                 "from `comment` c1 left join`comment` c2 on c1.CommentID=c2.refCommentID\n" +
                 "where ISNULL(c1.refCommentID) and c1.activityID='"+activityID+"';";
+        System.out.println(selectSql);
         try {
             Statement statement= DBUtill.getConnect().createStatement();
             ResultSet resultSet=statement.executeQuery(selectSql);
             while (resultSet.next()) {
                 String fromUserID=resultSet.getString("c1.fromUserID");
+                System.out.println(fromUserID);
                 StudentDao studentDao=new StudentDaoImpl();
                 Student student=studentDao.selectStudent(fromUserID).get(0);
                 List<Reply> replyList=new ArrayList<>();
+                System.out.println(resultSet.getString("c2.fromUserID"));
                 if(resultSet.getString("c2.fromUserID")!=null){
                     String fromUserID1=resultSet.getString("c2.fromUserID");
                     SponsorDao sponsorDao=new SponsorDaoImpl();
                     Sponsor sponsor=sponsorDao.getSponsor(fromUserID1);
+                    System.out.println(sponsor.getSponsorName()+" "+resultSet.getString("c2.content")+" "+resultSet.getString("c2.time"));
                     Reply reply=new Reply(sponsor.getSponsorName(),resultSet.getString("c2.content"),resultSet.getString("c2.time"));
                     replyList.add(reply);
                 }
