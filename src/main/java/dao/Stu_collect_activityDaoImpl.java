@@ -1,6 +1,7 @@
 package dao;
 
 import database.DBUtill;
+import entity.Activity;
 import entity.Stu_apply_activity;
 import entity.Stu_collect_activity;
 
@@ -28,6 +29,18 @@ public class Stu_collect_activityDaoImpl implements Stu_collect_activityDao{
         select(collectList,selectSql);
         return collectList;
     }
+
+    public List<Activity> getActivityListByStudentID(String studentID){
+        List<Activity> list = new ArrayList<>();
+        List<Stu_collect_activity> collectList = getActivityByStudentID(studentID);
+        ActivityDao activityDao= new ActivityDaoImpl();
+        for(Stu_collect_activity saa : collectList){
+            list.add(activityDao.getActivityByActivityID(saa.getActivityID()).get(0));
+        }
+        return list;
+    }
+
+
 
     //看是否已经收藏一个活动了（是否二次点击）
     public List<Stu_collect_activity> getActivityByStudentIDAndActivityID(String studentID,String activityID){

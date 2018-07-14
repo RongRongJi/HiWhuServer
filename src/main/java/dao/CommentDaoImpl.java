@@ -63,22 +63,29 @@ public class CommentDaoImpl implements CommentDao {
             while (resultSet.next()) {
                 String fromUserID=resultSet.getString("c1.fromUserID");
                 System.out.println(fromUserID);
+                //评论的是学生
+
                 StudentDao studentDao=new StudentDaoImpl();
                 Student student=studentDao.selectStudent(fromUserID).get(0);
                 List<Reply> replyList=new ArrayList<>();
                 System.out.println(resultSet.getString("c2.fromUserID"));
                 if(resultSet.getString("c2.fromUserID")!=null){
                     String fromUserID1=resultSet.getString("c2.fromUserID");
+                    //回复的是主办方
                     SponsorDao sponsorDao=new SponsorDaoImpl();
                     Sponsor sponsor=sponsorDao.getSponsor(fromUserID1);
                     System.out.println(sponsor.getSponsorName()+" "+resultSet.getString("c2.content")+" "+resultSet.getString("c2.time"));
                     Reply reply=new Reply(sponsor.getSponsorName(),resultSet.getString("c2.content"),resultSet.getString("c2.time"));
                     replyList.add(reply);
+
                 }
                 CommentAndReply commentAndReply=new CommentAndReply(resultSet.getString("c1.commentID"),fromUserID,student.getUserName(),
                         student.getHeadProtrait(),resultSet.getString("c1.content"),resultSet.getString("c1.activityID"),
                         resultSet.getString("c1.time"),replyList);
                 commentAndReplyList.add(commentAndReply);
+
+
+
             }
             System.out.println("查询成功");
             statement.close();

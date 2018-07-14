@@ -235,4 +235,12 @@
         <servlet-name>GetCommentByActivityIDServlet</servlet-name>
         <url-pattern>/GetCommentByActivityIDServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCollectionListByStudentID</servlet-name>
+        <servlet-class>servlet.GetCollectionListByStudentID</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCollectionListByStudentID</servlet-name>
+        <url-pattern>/GetCollectionListByStudentID</url-pattern>
+    </servlet-mapping>
 </web-app>

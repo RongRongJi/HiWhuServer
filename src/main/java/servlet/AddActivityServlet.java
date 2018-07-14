@@ -61,6 +61,14 @@ public class AddActivityServlet extends HttpServlet {
             registrationEndTime = new String(registrationEndTime.getBytes("iso-8859-1"),"UTF-8");
         }
         String location=request.getParameter("location");
+        if(location!=null){
+            location = new String(location.getBytes("iso-8859-1"),"UTF-8");
+        }
+        String latitude = request.getParameter("latitude");
+        System.out.println(latitude);
+        String longitude = request.getParameter("longitude");
+        System.out.println(longitude);
+        location = location +"||"+latitude+"||"+longitude;
         String activityProfile=request.getParameter("activityProfile");
         if(activityProfile!=null){
             activityProfile = new String(activityProfile.getBytes("iso-8859-1"),"UTF-8");
