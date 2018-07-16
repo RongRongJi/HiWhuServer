@@ -11,7 +11,8 @@ public class DBUtill {
     static private String user="root";
     static private String password="root";
     static private String driver="com.mysql.jdbc.Driver";
-    static private String url="jdbc:mysql://139.219.140.158:3306/hi_whu?characterEncoding=utf8";
+    static private String url="jdbc:mysql://42.159.153.247:3306/hi_whu?characterEncoding=utf8";
+    //static private String url="jdbc:mysql://localhost:3306/hi_whu?characterEncoding=utf8";
     static private Connection con=null;
     public static Connection getConnect() {
         try {
