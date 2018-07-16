@@ -1,9 +1,11 @@
 package servlet;
 
+import dao.ActivityDao;
 import dao.ActivityDaoImpl;
 import dao.Stu_apply_activityDao;
 import dao.Stu_apply_activityDaoImpl;
 import database.DBUtill;
+import entity.Activity;
 import entity.Stu_apply_activity;
 
 import javax.servlet.ServletException;
@@ -58,8 +60,11 @@ public class StuApplyActivityServlet extends HttpServlet {
         //String phoneNum="18771006771";
         //String qqNum="1179641609";
         // TODO 得到报名信息数据
-        String registrationEndTime=new ActivityDaoImpl().selectActivity(activityID).get(0).getRegistrationEndTime();
-        if(DBUtill.compare(time,registrationEndTime)){
+        ActivityDao activityDao = new ActivityDaoImpl();
+        Activity temp = activityDao.selectActivity(activityID).get(0);
+        String registrationEndTime=temp.getRegistrationEndTime();
+        String registrationStartTime = temp.getRegistrationStartTime();
+        if(DBUtill.compare(time,registrationEndTime)&&DBUtill.compare(registrationStartTime,time)){
             Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
             List<Stu_apply_activity> applyList=stu_apply_activityDao.getActivityByStudentIDAndActivityID(studentID,activityID);
             if(applyList.size()!=0){
