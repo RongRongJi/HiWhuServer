@@ -37,8 +37,8 @@ public class AllAppliedActivityResultServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        String studentID = request.getParameter("studentID"); // 从 request 中获取名为 account 的参数的值
-        String studentID="2016302580140";
+        String studentID = request.getParameter("studentID"); // 从 request 中获取名为 account 的参数的值
+        //String studentID="2016302580140";
         Stu_apply_activityDao stu_apply_activityDao=new Stu_apply_activityDaoImpl();
         List<Stu_apply_activity> stuApplyResultList=stu_apply_activityDao.getAllAppliedActivityResult(studentID);
         JSONArray array = JSONArray.fromObject(stuApplyResultList);

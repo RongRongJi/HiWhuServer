@@ -40,8 +40,8 @@ public class GetMessageServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        String studentID=request.getParameter("studentID");
-        String studentID="2016302580228";
+        String studentID=request.getParameter("studentID");
+//        String studentID="2016302580228";
         MessageDao messageDao=new MessageDaoImpl();
         List<Message> messageList=messageDao.getMessageByStudentID(studentID);
         JSONArray array = JSONArray.fromObject(messageList);
