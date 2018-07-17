@@ -251,4 +251,12 @@
         <servlet-name>ChangeHeadImageServlet</servlet-name>
         <url-pattern>/ChangeHeadImageServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetCommentCountServlet</servlet-name>
+        <servlet-class>servlet.GetCommentCountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCommentCountServlet</servlet-name>
+        <url-pattern>/GetCommentCountServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

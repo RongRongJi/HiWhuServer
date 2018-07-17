@@ -2,6 +2,7 @@ package dao;
 
 import entity.Comment;
 import entity.CommentAndReply;
+import entity.CommentWithActivity;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface CommentDao {
     public int deleteCommentByCommentID(String commentID);
     public List<Comment> getCommentByCommentID(String commentID);
     public List<CommentAndReply> getCommentAndReplyByActivityID(String activityID);
+    public List<CommentWithActivity> getCommentCount(String sponsorID);
 }

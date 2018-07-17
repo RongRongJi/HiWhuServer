@@ -89,4 +89,34 @@ public class CommentDaoImpl implements CommentDao {
         }
         return commentAndReplyList;
     }
+
+    public List<CommentWithActivity> getCommentCount(String sponsorID){
+        List<CommentWithActivity> list = new ArrayList<>();
+        String sql ="select count(*),c.activityID,title from comment c,activity a,sponsor s\n" +
+                "where c.activityID is not null\n" +
+                "and c.activityID=a.activityID\n" +
+                "and refCommentID is null\n"+
+                "and a.sponsorID=s.sponsorID\n" +
+                "and s.sponsorID='"+sponsorID+"'\n" +
+                "group by c.activityID;";
+        try {
+            Statement statement= DBUtill.getConnect().createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {
+                CommentWithActivity comment=new CommentWithActivity();
+                comment.setCount(resultSet.getInt(1));
+                comment.setActivityID(resultSet.getString(2));
+                comment.setTitle(resultSet.getString(3));
+                list.add(comment);
+            }
+            System.out.println("查询成功");
+            statement.close();
+            DBUtill.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+        }
+
+        return list;
+    }
 }
