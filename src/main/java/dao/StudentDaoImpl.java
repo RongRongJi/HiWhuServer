@@ -78,4 +78,10 @@ public class StudentDaoImpl implements StudentDao {
         System.out.println("查询失败");
         }
     }
+
+    public int updateImage(String studentID,String headProtrait){
+        String updateSql = "update student set headProtrait='"+headProtrait+"' where studentID='"+studentID+"';";
+        System.out.println(updateSql);
+        return DBUtill.update(updateSql);
+    }
 }

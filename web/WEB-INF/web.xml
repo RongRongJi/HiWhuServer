@@ -243,4 +243,12 @@
         <servlet-name>GetCollectionListByStudentID</servlet-name>
         <url-pattern>/GetCollectionListByStudentID</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeHeadImageServlet</servlet-name>
+        <servlet-class>servlet.ChangeHeadImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeHeadImageServlet</servlet-name>
+        <url-pattern>/ChangeHeadImageServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
