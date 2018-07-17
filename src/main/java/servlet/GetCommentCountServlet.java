@@ -37,12 +37,18 @@ public class GetCommentCountServlet extends HttpServlet{
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         PrintWriter pw=resp.getWriter();
+        String type=req.getParameter("type");
+        String studentID=req.getParameter("studentID");
         String sponsorID = req.getParameter("sponsorID");
         Statement statement=null;
         ResultSet rs=null;
         try{
             CommentDao commentDao = new CommentDaoImpl();
-            List<CommentWithActivity> list = commentDao.getCommentCount(sponsorID);
+            List<CommentWithActivity> list=null;
+            if(type.equals("2"))
+                list = commentDao.getCommentCount(sponsorID);
+            else if(type.equals("1"))
+                list = commentDao.getRefCount(studentID);
             if(list!=null){
                 JSONArray jsonObject = JSONArray.fromObject(list);
                 String strObject = jsonObject.toString();

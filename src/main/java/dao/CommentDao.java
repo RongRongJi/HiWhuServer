@@ -16,4 +16,5 @@ public interface CommentDao {
     public List<Comment> getCommentByCommentID(String commentID);
     public List<CommentAndReply> getCommentAndReplyByActivityID(String activityID);
     public List<CommentWithActivity> getCommentCount(String sponsorID);
+    public List<CommentWithActivity> getRefCount(String studentID);
 }
