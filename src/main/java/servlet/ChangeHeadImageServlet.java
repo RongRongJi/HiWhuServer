@@ -67,7 +67,7 @@ public class ChangeHeadImageServlet extends HttpServlet {
                     System.out.println(inputStream2String(is));
                 } else if (name.contains("img")) {
                     try {
-                        path = upload+"\\"+item.getName();
+                        path = upload+item.getName();
                         System.out.println("name = :"+item.getName());
                         int result = 0;
                         if(type.equals("2")){

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/5.
  */
@@ -38,10 +40,12 @@ public class AddSponsorServlet  extends HttpServlet {
         String password=request.getParameter("password");
         String introduction=request.getParameter("introduction");
         if(sponsorName!=null){
-            sponsorName = new String(sponsorName.getBytes("iso-8859-1"),"UTF-8");
+            sponsorName=changeUTF8(sponsorName);
+            //sponsorName = new String(sponsorName.getBytes("iso-8859-1"),"UTF-8");
         }
         if(introduction!=null){
-            introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
+            introduction=changeUTF8(introduction);
+            //introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
         }
         String headimage = "logo.png";
         SponsorDaoImpl sponsorDao=new SponsorDaoImpl();

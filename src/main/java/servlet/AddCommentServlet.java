@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/10.
  */
@@ -38,7 +40,7 @@ public class AddCommentServlet extends HttpServlet {
         String fromUserID=request.getParameter("fromUserID");
         String content=request.getParameter("content");
         if(content!=null){
-            content = new String(content.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+            content=changeUTF8(content);
         }
         String activityID=request.getParameter("activityID");
         String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
@@ -51,6 +53,7 @@ public class AddCommentServlet extends HttpServlet {
         String time=df.format(new Date());// new Date()为获取当前系统时间
         int result=commentDao.addComment(fromUserID,content,activityID,commentID,time);
         if(result>0){
+
             out.print("succeed."+activityID);
             ActivityDao activityDao=new ActivityDaoImpl();
             Activity activity=activityDao.getActivityByActivityID(activityID).get(0);

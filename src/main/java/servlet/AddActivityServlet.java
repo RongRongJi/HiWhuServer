@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/7.
  */
@@ -42,27 +44,27 @@ public class AddActivityServlet extends HttpServlet {
         String activityID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         String title=request.getParameter("title");
         if(title!=null){
-            title = new String(title.getBytes("iso-8859-1"),"UTF-8");
+            title=changeUTF8(title);
         }
         String startTime=request.getParameter("startTime")+":00";
         String endTime=request.getParameter("endTime")+":00";
         String registrationStartTime=request.getParameter("registrationStartTime")+":00";
         String registrationEndTime=request.getParameter("registrationEndTime")+":00";
         if(startTime!=null){
-            startTime = new String(startTime.getBytes("iso-8859-1"),"UTF-8");
+            startTime=changeUTF8(startTime);
         }
         if(endTime!=null){
-            endTime = new String(endTime.getBytes("iso-8859-1"),"UTF-8");
+            endTime=changeUTF8(endTime);
         }
         if(registrationStartTime!=null){
-            registrationStartTime = new String(registrationStartTime.getBytes("iso-8859-1"),"UTF-8");
+            registrationStartTime=changeUTF8(registrationStartTime);
         }
         if(registrationEndTime!=null){
-            registrationEndTime = new String(registrationEndTime.getBytes("iso-8859-1"),"UTF-8");
+            registrationEndTime=changeUTF8(registrationEndTime);
         }
         String location=request.getParameter("location");
         if(location!=null){
-            location = new String(location.getBytes("iso-8859-1"),"UTF-8");
+            location=changeUTF8(location);
         }
         String latitude = request.getParameter("latitude");
         System.out.println(latitude);
@@ -71,7 +73,7 @@ public class AddActivityServlet extends HttpServlet {
         location = location +"||"+latitude+"||"+longitude;
         String activityProfile=request.getParameter("activityProfile");
         if(activityProfile!=null){
-            activityProfile = new String(activityProfile.getBytes("iso-8859-1"),"UTF-8");
+            activityProfile=changeUTF8(activityProfile);
         }
         String sponsorID=request.getParameter("sponsorID");
         String type=request.getParameter("type");
@@ -103,7 +105,7 @@ public class AddActivityServlet extends HttpServlet {
                     System.out.println(inputStream2String(is));
                 } else if (name.contains("img")) {
                     try {
-                        path = upload+"\\"+item.getName();
+                        path = upload+item.getName();
                         System.out.println("name = :"+item.getName());
                         ActivityDao activityDao=new ActivityDaoImpl();
                         int result = activityDao.addActivity(activityID,title,startTime,endTime,registrationStartTime,registrationEndTime,location,activityProfile,

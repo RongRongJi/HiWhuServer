@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/9.
  */
@@ -52,7 +54,8 @@ public class StuApplyActivityServlet extends HttpServlet {
         String state="1";//1代表已报名未审核，2代表报名已审核已通过，3代表报名已审核被拒绝
         String studentName=request.getParameter("studentName");
         if(studentName!=null){
-            studentName = new String(studentName.getBytes("iso-8859-1"),"UTF-8");
+            studentName=changeUTF8(studentName);
+            //studentName = new String(studentName.getBytes("iso-8859-1"),"UTF-8");
         }
         String phoneNum=request.getParameter("phoneNum");
         String qqNum=request.getParameter("qqNum");

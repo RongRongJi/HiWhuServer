@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lsr on 2018/7/13.
  */
@@ -34,10 +36,12 @@ public class UpdateSponsorServlet extends HttpServlet{
         String phoneNum=request.getParameter("phoneNum");
         String introduction=request.getParameter("introduction");
         if(sponsorName!=null){
-            sponsorName = new String(sponsorName.getBytes("iso-8859-1"),"UTF-8");
+            sponsorName=changeUTF8(sponsorName);
+            //sponsorName = new String(sponsorName.getBytes("iso-8859-1"),"UTF-8");
         }
         if(introduction!=null){
-            introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
+            introduction=changeUTF8(introduction);
+            //introduction = new String(introduction.getBytes("iso-8859-1"),"UTF-8");
         }
         SponsorDao sponsorDao=new SponsorDaoImpl();
         int result = sponsorDao.updateSponsor(sponsorID,sponsorName,phoneNum,introduction);

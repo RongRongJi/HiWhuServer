@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/5.
  */
@@ -47,7 +49,8 @@ public class LoginServlet extends HttpServlet {
             String account=request.getParameter("account");
             String password=request.getParameter("password");
             if(account!=null){
-                account = new String(account.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+                account=changeUTF8(account);
+                //account = new String(account.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
             }
             System.out.println(account);
             System.out.println(password);

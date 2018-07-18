@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import static dao.ChangeUTF8.changeUTF8;
+
 /**
  * Created by lenovo on 2018/7/10.
  */
@@ -39,7 +41,8 @@ public class ReplyCommentServlet extends HttpServlet {
         String refCommentID=request.getParameter("refCommentID");
         String content=request.getParameter("content");
         if(content!=null){
-            content = new String(content.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
+            content=changeUTF8(content);
+            //content = new String(content.getBytes("iso-8859-1"),"UTF-8");// 从 request 中获取名为 userName 的参数的值
         }
         String activityID=request.getParameter("activityID");
         String commentID= UUID.randomUUID().toString().replace("-", "").toLowerCase();
