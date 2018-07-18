@@ -41,7 +41,11 @@ public class UpdateSponsorServlet extends HttpServlet{
         }
         SponsorDao sponsorDao=new SponsorDaoImpl();
         int result = sponsorDao.updateSponsor(sponsorID,sponsorName,phoneNum,introduction);
-
+        if(result>0){
+            out.print("updatesucceed");
+        }else{
+            out.print("updatefailed");
+        }
     }
 
     /**
