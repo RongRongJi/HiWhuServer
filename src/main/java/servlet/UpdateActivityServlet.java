@@ -40,6 +40,9 @@ public class UpdateActivityServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO GET DATA
+        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         String activityID=request.getParameter("activityID");
         String title=request.getParameter("title");
